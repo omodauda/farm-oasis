@@ -1,12 +1,12 @@
 import React from 'react';
-import StartUpScreen from '@screens/StartUpScreen';
-import Onboarding from '@screens/AuthScreens/Onboarding';
+import {NavigationContainer} from '@react-navigation/native';
+import AppNavigator from '@navigations/AppNavigator';
 
 const App = () => {
   return (
-    <>
-      <Onboarding />
-    </>
+    <NavigationContainer>
+      <AppNavigator />
+    </NavigationContainer>
   );
 };
 

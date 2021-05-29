@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  StatusBar,
+} from 'react-native';
 import Carousel from '@components/Carousel/Carousel';
 import Colors from '@constants/Colors';
 
@@ -21,16 +27,25 @@ const data = [
   },
 ];
 
-export default function Onboarding() {
+export default function Onboarding({navigation}) {
   return (
     <View style={styles.screen}>
+      <StatusBar backgroundColor="white" barStyle="dark-content" />
       <Carousel data={data} />
 
-      <TouchableOpacity style={styles.signupButton}>
+      <TouchableOpacity
+        style={styles.signupButton}
+        onPress={() => {
+          navigation.navigate('Signup');
+        }}>
         <Text style={styles.signupText}>Create an account</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.loginButton}>
+      <TouchableOpacity
+        style={styles.loginButton}
+        onPress={() => {
+          navigation.navigate('Login');
+        }}>
         <Text style={styles.loginText}>Log In</Text>
       </TouchableOpacity>
     </View>
