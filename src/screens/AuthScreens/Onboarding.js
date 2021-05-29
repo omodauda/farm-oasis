@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   signupText: {
-    color: 'black',
+    color: Colors.text,
     fontSize: 24,
     fontWeight: '500',
   },
