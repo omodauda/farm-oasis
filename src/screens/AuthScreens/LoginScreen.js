@@ -79,7 +79,13 @@ export default function LoginScreen({navigation}) {
               <Text style={styles.buttonText}>Log In</Text>
             </TouchableOpacity>
 
-            <Text style={styles.resetPasswordLink}>Forget Password?</Text>
+            <Text
+              style={styles.resetPasswordLink}
+              onPress={() => {
+                navigation.navigate('ForgetPassword');
+              }}>
+              Forget Password?
+            </Text>
             <Text style={styles.newUserText}>
               New User ?{' '}
               <Text

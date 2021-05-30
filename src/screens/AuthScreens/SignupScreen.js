@@ -39,7 +39,7 @@ export default function SignupScreen() {
                 name="firstName"
                 keyboardType="default"
                 placeholder="First Name"
-                placeholderTextColor="black"
+                placeholderTextColor={Colors.text}
                 style={styles.input}
               />
               {errors.firstName && (
@@ -52,7 +52,7 @@ export default function SignupScreen() {
                 name="lastName"
                 keyboardType="default"
                 placeholder="Last Name"
-                placeholderTextColor="black"
+                placeholderTextColor={Colors.text}
                 style={styles.input}
               />
               {errors.lastName && (
@@ -65,7 +65,7 @@ export default function SignupScreen() {
                 name="email"
                 keyboardType="default"
                 placeholder="Email Address"
-                placeholderTextColor="black"
+                placeholderTextColor={Colors.text}
                 style={styles.input}
               />
               {errors.email && (
@@ -78,7 +78,7 @@ export default function SignupScreen() {
                 name="phone"
                 keyboardType="numeric"
                 placeholder="Phone Number"
-                placeholderTextColor="black"
+                placeholderTextColor={Colors.text}
                 style={styles.input}
               />
               {errors.phone && (
@@ -91,7 +91,7 @@ export default function SignupScreen() {
                 name="password"
                 keyboardType="default"
                 placeholder="Password"
-                placeholderTextColor="black"
+                placeholderTextColor={Colors.text}
                 secureTextEntry
                 style={styles.input}
               />

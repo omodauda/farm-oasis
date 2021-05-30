@@ -6,7 +6,7 @@ import Colors from '@constants/Colors';
 import OnboardingScreen from '@screens/AuthScreens/Onboarding';
 import SignupScreen from '@screens/AuthScreens/SignupScreen';
 import LoginScreen from '@screens/AuthScreens/LoginScreen';
-import ResetPasswordScreen from '@screens/AuthScreens/ResetPasswordScreen';
+import ForgetPasswordScreen from '@screens/AuthScreens/ForgetPasswordScreen';
 import ConfirmEmailScreen from '@screens/AuthScreens/ConfirmEmailScreen';
 
 const Stack = createStackNavigator();
@@ -40,7 +40,14 @@ export default function AuthStack() {
         name="Login"
         component={LoginScreen}
       />
-      <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
+      <Stack.Screen
+        options={{
+          headerTitle: '',
+          headerTintColor: Colors.text,
+        }}
+        name="ForgetPassword"
+        component={ForgetPasswordScreen}
+      />
       <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
     </Stack.Navigator>
   );
