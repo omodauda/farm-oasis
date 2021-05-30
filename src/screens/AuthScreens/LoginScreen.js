@@ -40,7 +40,7 @@ export default function LoginScreen({navigation}) {
                 component={CustomTextInput}
                 name="email"
                 keyboardType="default"
-                placeholder="AndrewAbel@gmail.com"
+                placeholder="e.g AndrewAbel@gmail.com"
                 placeholderTextColor="white"
                 style={styles.input}
               />
