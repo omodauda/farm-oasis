@@ -8,7 +8,6 @@ import SignupScreen from '@screens/AuthScreens/SignupScreen';
 import LoginScreen from '@screens/AuthScreens/LoginScreen';
 import ResetPasswordScreen from '@screens/AuthScreens/ResetPasswordScreen';
 import ConfirmEmailScreen from '@screens/AuthScreens/ConfirmEmailScreen';
-import {color} from 'react-native-reanimated';
 
 const Stack = createStackNavigator();
 
@@ -26,9 +25,6 @@ export default function AuthStack() {
         options={{
           headerTitle: '',
           headerTintColor: Colors.primary,
-          headerBackTitleStyle: {
-            // color: Colors.primary,
-          },
         }}
         name="Signup"
         component={SignupScreen}
@@ -36,10 +32,10 @@ export default function AuthStack() {
       <Stack.Screen
         options={{
           headerTitle: '',
-          headerTintColor: Colors.primary,
-          // headerBackTitleStyle: {
-          //   color: Colors.primary,
-          // },
+          headerTintColor: 'white',
+          headerStyle: {
+            backgroundColor: Colors.primary,
+          },
         }}
         name="Login"
         component={LoginScreen}

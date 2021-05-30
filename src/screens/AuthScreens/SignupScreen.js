@@ -5,6 +5,7 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import {Formik, Field} from 'formik';
 import CustomTextInput from '@components/CustomTextInput';
@@ -17,6 +18,7 @@ export default function SignupScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <ScrollView style={styles.screen}>
+      <StatusBar backgroundColor="white" barStyle="dark-content" />
       <Text style={styles.headerTitle}>Let's get to know you</Text>
       <Text style={styles.headerText}>Create an account and start earning</Text>
       <Formik

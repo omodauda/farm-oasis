@@ -1,11 +1,15 @@
 import React from 'react';
-import {View, Text, Modal, StyleSheet} from 'react-native';
+import {View, Text, Modal, StyleSheet, StatusBar} from 'react-native';
 import Colors from '@constants/Colors';
 
 export default function ModalComponent({modalVisible, setModalVisible}) {
   return (
     <View style={styles.centeredView}>
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
+        <StatusBar
+          backgroundColor="rgba(196, 196, 196, 0.75)"
+          barStyle="dark-content"
+        />
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.infoText}>
