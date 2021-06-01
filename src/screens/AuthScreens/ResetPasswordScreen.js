@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
   introTitle: {
     fontSize: 24,
     fontWeight: '600',
+    fontFamily: 'Montserrat-SemiBold',
     color: Colors.text,
     marginBottom: 15,
     textAlign: 'center',
@@ -125,6 +126,7 @@ const styles = StyleSheet.create({
   introText: {
     fontSize: 16,
     fontWeight: '500',
+    fontFamily: 'Montserrat-Medium',
     color: Colors.text,
     marginBottom: 15,
     lineHeight: 25,
@@ -132,11 +134,13 @@ const styles = StyleSheet.create({
   resendToken: {
     color: Colors.primary,
     fontWeight: '700',
+    fontFamily: 'Montserrat-Bold',
   },
   label: {
     color: Colors.text,
     fontSize: 14,
     fontWeight: '500',
+    fontFamily: 'Montserrat-Medium',
     marginBottom: 5,
   },
   formControl: {
@@ -147,6 +151,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: Colors.primary,
     color: Colors.text,
+    fontSize: 16,
+    fontFamily: 'Montserrat-Medium',
   },
   spacedInput: {
     marginBottom: 20,
@@ -154,6 +160,7 @@ const styles = StyleSheet.create({
   errorText: {
     color: 'red',
     fontSize: 16,
+    fontFamily: 'Montserrat-Medium',
   },
   button: {
     backgroundColor: Colors.primary,
@@ -165,6 +172,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 24,
     fontWeight: '500',
+    fontFamily: 'Montserrat-Medium',
     color: '#243D44',
   },
 });

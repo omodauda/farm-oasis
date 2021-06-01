@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     color: Colors.text,
     fontSize: 14,
     fontWeight: '600',
+    fontFamily: 'Montserrat-SemiBold',
   },
   buttonText: {
     color: Colors.primary,

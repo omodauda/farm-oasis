@@ -40,12 +40,14 @@ const styles = StyleSheet.create({
     color: Colors.primary,
     fontSize: 24,
     fontWeight: '500',
+    fontFamily: 'Montserrat-Medium',
     paddingTop: 20,
   },
   body: {
     color: 'black',
     fontSize: 16,
     fontWeight: '500',
+    fontFamily: 'Montserrat-Medium',
     paddingTop: 14,
   },
 });

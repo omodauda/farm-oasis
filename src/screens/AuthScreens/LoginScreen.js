@@ -117,18 +117,21 @@ const styles = StyleSheet.create({
   introTitle: {
     fontSize: 24,
     fontWeight: '600',
+    fontFamily: 'Montserrat-SemiBold',
     color: 'white',
     marginBottom: 5,
   },
   introText: {
     fontSize: 16,
     fontWeight: '500',
+    fontFamily: 'Montserrat-Medium',
     color: 'white',
   },
   label: {
     color: 'white',
     fontSize: 14,
     fontWeight: '500',
+    fontFamily: 'Montserrat-Medium',
   },
   formControl: {
     marginBottom: 7,
@@ -137,6 +140,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: 'white',
     color: 'white',
+    fontSize: 14,
+    fontFamily: 'Montserrat-Medium',
   },
   spacedInput: {
     marginBottom: 20,
@@ -144,6 +149,7 @@ const styles = StyleSheet.create({
   errorText: {
     color: 'red',
     fontSize: 16,
+    fontFamily: 'Montserrat-Medium',
   },
   check: {
     flexDirection: 'row',
@@ -154,6 +160,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: 'white',
     fontWeight: '500',
+    fontFamily: 'Montserrat-Medium',
   },
   button: {
     backgroundColor: '#E5E5E5',
@@ -165,6 +172,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 24,
     fontWeight: '500',
+    fontFamily: 'Montserrat-Medium',
     color: '#243D44',
   },
   resetPasswordLink: {
@@ -172,15 +180,18 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 14,
     fontWeight: '400',
+    fontFamily: 'Montserrat-Regular',
     marginBottom: 26,
   },
   newUserText: {
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: '400',
+    fontFamily: 'Montserrat-Regular',
     color: 'white',
     textAlign: 'center',
   },
   signupLink: {
-    fontWeight: '700',
+    fontWeight: '600',
+    fontFamily: 'Montserrat-SemiBold',
   },
 });

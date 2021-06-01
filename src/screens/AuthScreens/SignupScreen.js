@@ -142,10 +142,12 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontWeight: '600',
     fontSize: 24,
+    fontFamily: 'Montserrat-SemiBold',
     color: Colors.primary,
   },
   headerText: {
     fontWeight: '500',
+    fontFamily: 'Montserrat-Medium',
     fontSize: 16,
     color: Colors.text,
     marginBottom: 10,
@@ -157,6 +159,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.secondary,
     borderRadius: 3,
+    fontFamily: 'Montserrat-Medium',
+    fontSize: 14,
   },
   errorText: {
     color: 'red',
@@ -173,18 +177,22 @@ const styles = StyleSheet.create({
     marginRight: 5,
     fontSize: 16,
     fontWeight: 'bold',
+    fontFamily: 'Montserrat-Bold',
   },
   info: {
     fontSize: 14,
     fontWeight: '500',
+    fontFamily: 'Montserrat-Medium',
     marginBottom: 30,
   },
   quotedText: {
     color: Colors.primary,
     fontWeight: 'bold',
+    fontFamily: 'Montserrat-Bold',
   },
   underlinedText: {
     textDecorationLine: 'underline',
+    fontFamily: 'Montserrat-Medium',
   },
   button: {
     backgroundColor: Colors.primary,
@@ -196,5 +204,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 24,
     fontWeight: '500',
+    fontFamily: 'Montserrat-Medium',
   },
 });

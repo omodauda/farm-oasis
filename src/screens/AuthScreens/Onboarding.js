@@ -81,10 +81,12 @@ const styles = StyleSheet.create({
     color: Colors.text,
     fontSize: 24,
     fontWeight: '500',
+    fontFamily: 'Montserrat-Medium',
   },
   loginText: {
     color: Colors.primary,
     fontSize: 24,
     fontWeight: '500',
+    fontFamily: 'Montserrat-Medium',
   },
 });

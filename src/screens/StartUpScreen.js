@@ -52,6 +52,6 @@ const styles = StyleSheet.create({
     fontSize: 38,
     color: Colors.primary,
     fontWeight: '700',
-    fontFamily: 'Montserrat-BlackItalic',
+    fontFamily: 'Montserrat-Bold',
   },
 });
