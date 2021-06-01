@@ -11,7 +11,7 @@ import CustomTextInput from '@components/CustomTextInput';
 import Colors from '@constants/Colors';
 import {forgetPasswordValidationSchema} from '@validations/ForgetPasswordValidation';
 
-export default function ForgetPasswordScreen() {
+export default function ForgetPasswordScreen({navigation}) {
   return (
     <View style={styles.screen}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
@@ -25,7 +25,10 @@ export default function ForgetPasswordScreen() {
         initialValues={{
           email: '',
         }}
-        onSubmit={values => console.log(values)}>
+        onSubmit={values => {
+          console.log(values);
+          navigation.navigate('ResetPassword');
+        }}>
         {({handleSubmit, isValid, errors}) => (
           <>
             <View style={styles.formControl}>
