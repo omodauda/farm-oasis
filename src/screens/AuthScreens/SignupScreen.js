@@ -164,6 +164,7 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     fontFamily: 'Montserrat-Medium',
     fontSize: 14,
+    color: Colors.text,
   },
   errorText: {
     color: 'red',
