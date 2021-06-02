@@ -56,7 +56,13 @@ export default function AuthStack() {
         name="ResetPassword"
         component={ResetPasswordScreen}
       />
-      <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="ConfirmEmail"
+        component={ConfirmEmailScreen}
+      />
     </Stack.Navigator>
   );
 }

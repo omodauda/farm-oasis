@@ -14,7 +14,7 @@ import Colors from '@constants/Colors';
 import Icon from 'react-native-vector-icons/Feather';
 import Modal from '@components/Modal';
 
-export default function SignupScreen() {
+export default function SignupScreen({navigation}) {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <ScrollView style={styles.screen}>
@@ -30,7 +30,10 @@ export default function SignupScreen() {
           phone: '',
           password: '',
         }}
-        onSubmit={values => console.log(values)}>
+        onSubmit={values => {
+          console.log(values);
+          navigation.navigate('ConfirmEmail');
+        }}>
         {({handleSubmit, isValid, errors}) => (
           <>
             <View style={styles.formControl}>

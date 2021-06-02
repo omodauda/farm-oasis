@@ -103,7 +103,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     paddingTop: 65,
-    paddingBottom: 170,
     backgroundColor: 'white',
   },
   imgContainer: {
