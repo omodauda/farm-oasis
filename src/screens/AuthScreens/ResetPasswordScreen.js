@@ -25,9 +25,8 @@ export default function ResetPasswordScreen() {
       </View>
       <Text style={styles.introTitle}>Check your mail</Text>
       <Text style={styles.introText}>
-        We have sent a reset token to the email provided, click on{' '}
-        <Text style={styles.resendToken}>resend</Text> if you didn't get it
-        after 5 minutes.
+        We have sent a reset token to the email provided, click on resend if you
+        didn't get it after 5 minutes.
       </Text>
 
       <Formik
@@ -85,12 +84,20 @@ export default function ResetPasswordScreen() {
               )}
             </View>
 
-            <TouchableOpacity
-              style={styles.button}
-              onPress={handleSubmit}
-              disabled={!isValid}>
-              <Text style={styles.buttonText}>Reset Password</Text>
-            </TouchableOpacity>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={handleSubmit}
+                disabled={!isValid}>
+                <Text style={styles.buttonText}>Confirm Email</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={handleSubmit}
+                disabled={!isValid}>
+                <Text style={styles.buttonText}>Resend Token</Text>
+              </TouchableOpacity>
+            </View>
           </>
         )}
       </Formik>
@@ -130,11 +137,6 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     lineHeight: 25,
   },
-  resendToken: {
-    color: Colors.primary,
-    fontWeight: '700',
-    fontFamily: 'Montserrat-Bold',
-  },
   label: {
     color: Colors.text,
     fontSize: 14,
@@ -161,11 +163,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'Montserrat-Medium',
   },
+  buttonContainer: {
+    marginBottom: 75,
+  },
   button: {
     backgroundColor: Colors.primary,
     paddingVertical: 16,
     borderRadius: 5,
-    marginBottom: 53,
+    marginBottom: 20,
   },
   buttonText: {
     textAlign: 'center',
