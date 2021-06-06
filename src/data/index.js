@@ -1,4 +1,4 @@
-export const Farms = [
+export const FARMS = [
   {
     id: '1',
     title: 'Tomato Farm',

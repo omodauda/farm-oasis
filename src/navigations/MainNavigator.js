@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  createBottomTabNavigator,
-  BottomTabBar,
-} from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Colors from '@constants/Colors';
 
 // Screens
@@ -20,12 +17,13 @@ const Tab = createBottomTabNavigator();
 export default function MainNavigator() {
   return (
     <Tab.Navigator
-      tabBar={props => (
-        <BottomTabBar
-          {...props}
-          state={{...props.state, routes: props.state.routes.slice(0, 3)}}
-        />
-      )}
+      screenOptions={({route}) => ({
+        tabBarButton: ['ExploreFarms'].includes(route.name)
+          ? () => {
+              return null;
+            }
+          : undefined,
+      })}
       tabBarOptions={{
         style: {
           height: 70,
