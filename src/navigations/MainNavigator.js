@@ -67,7 +67,13 @@ export default function MainNavigator() {
           ),
         }}
       />
-      <Tab.Screen name="ExploreFarms" component={ExploreFarmsScreen} />
+      <Tab.Screen
+        name="ExploreFarms"
+        component={ExploreFarmsScreen}
+        options={{
+          tabBarVisible: false,
+        }}
+      />
     </Tab.Navigator>
   );
 }
