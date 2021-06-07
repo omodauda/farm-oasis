@@ -2,8 +2,7 @@ export const FARMS = [
   {
     id: '1',
     title: 'Tomato Farm',
-    location: 'Ibadan',
-    state: 'Oyo State',
+    location: 'Ibadan, Oyo State',
     amount: 50000,
     duration: '4 Months',
     roi: '10%',
@@ -13,8 +12,7 @@ export const FARMS = [
   {
     id: '2',
     title: 'Rice Farm',
-    location: 'Idofian',
-    state: 'Kwara State',
+    location: 'Idofian, kwara State',
     amount: 70000,
     duration: '6 Months',
     roi: '12%',
@@ -24,8 +22,7 @@ export const FARMS = [
   {
     id: '3',
     title: 'Cucumber Farm',
-    location: 'Obada',
-    state: 'Ogun State',
+    location: 'Obada, Ogun State',
     amount: 25000,
     duration: '2 Months',
     roi: '10%',
@@ -35,8 +32,7 @@ export const FARMS = [
   {
     id: '4',
     title: 'Vegetable Farm',
-    location: 'Ikire',
-    state: 'Osun State',
+    location: 'Ikire, Osun State',
     amount: 5000,
     duration: '2 Months',
     roi: '5%',
@@ -46,8 +42,7 @@ export const FARMS = [
   {
     id: '5',
     title: 'Snail Farm',
-    location: 'Ibadan',
-    state: 'Oyo State',
+    location: 'Ibadan, Oyo State',
     amount: 100000,
     duration: '6 Months',
     roi: '20%',
@@ -57,8 +52,7 @@ export const FARMS = [
   {
     id: '6',
     title: 'Fish Farm',
-    location: 'Abeokuta',
-    state: 'Ogun State',
+    location: 'Abeokuta, Ogun State',
     amount: 150000,
     duration: '6 Months',
     roi: '15%',
@@ -68,8 +62,7 @@ export const FARMS = [
   {
     id: '7',
     title: 'Soybean Farm',
-    location: 'Ilorin',
-    state: 'kwara State',
+    location: 'Ilorin, Kwara State',
     amount: 15000,
     duration: '4 Months',
     roi: '5%',
@@ -79,8 +72,7 @@ export const FARMS = [
   {
     id: '8',
     title: 'Fruits Farm',
-    location: 'Ibadan',
-    state: 'Oyo State',
+    location: 'Ibadan, Oyo State',
     amount: 50000,
     duration: '4 Months',
     roi: '10%',
