@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     paddingTop: 40,
+    paddingBottom: 20,
     paddingHorizontal: 24,
   },
   header: {
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
     paddingVertical: 13,
     paddingHorizontal: 10,
     position: 'absolute',
-    bottom: 0,
+    bottom: 20,
     right: 24,
   },
   footerText: {
