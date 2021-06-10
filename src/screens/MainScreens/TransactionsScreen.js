@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, ScrollView, StatusBar} from 'react-native';
+import {View, Text, StyleSheet, StatusBar} from 'react-native';
 import Colors from '@constants/Colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import TopTabNavigator from '@navigations/TopTabNavigators/TransactionsTopTabNavigator';

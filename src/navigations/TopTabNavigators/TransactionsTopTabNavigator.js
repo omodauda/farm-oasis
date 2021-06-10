@@ -23,7 +23,7 @@ export default function () {
         inactiveTintColor: 'white',
         labelStyle: {
           fontFamily: 'Montserrat-Bold',
-          fontWeight: '700',
+          fontWeight: '600',
           fontSize: 16,
         },
       }}>
