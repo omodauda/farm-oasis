@@ -1,10 +1,13 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 export default function History() {
-  return (
-    <View>
-      <Text>History Screen</Text>
-    </View>
-  );
+  return <View style={styles.screen} />;
 }
+
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+});

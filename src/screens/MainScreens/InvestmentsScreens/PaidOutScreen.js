@@ -1,10 +1,13 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 export default function PaidOutScreen() {
-  return (
-    <View>
-      <Text>Paid Out Screens</Text>
-    </View>
-  );
+  return <View style={styles.screen} />;
 }
+
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+});
