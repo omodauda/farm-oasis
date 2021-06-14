@@ -14,6 +14,9 @@ export default function () {
     <Tab.Navigator
       tabBarOptions={{
         renderIndicator: () => null,
+        style: {
+          elevation: 0,
+        },
         tabStyle: {
           paddingHorizontal: 0,
           paddingVertical: 0,
