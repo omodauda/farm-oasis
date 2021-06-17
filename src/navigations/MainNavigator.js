@@ -1,12 +1,13 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {DrawerActions} from '@react-navigation/native';
 import Colors from '@constants/Colors';
 
 // Screens
 import HomeScreen from '@screens/MainScreens/HomeScreen';
 import TransactionsScreen from '@screens/MainScreens/TransactionsScreen';
 import ExploreFarmsScreen from '@screens/MainScreens/ExploreFarmsScreen';
-import ProfileScreen from '@screens/MainScreens/ProfileScreen';
+import ProfileDrawerNaviagtor from '@navigations/ProfileDrawerNavigation';
 
 // tab bar icons
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -60,7 +61,12 @@ export default function MainNavigator() {
       />
       <Tab.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={ProfileDrawerNaviagtor}
+        listeners={({navigation}) => ({
+          tabPress: e => {
+            navigation.dispatch(DrawerActions.openDrawer());
+          },
+        })}
         options={{
           tabBarIcon: ({focused, size, color}) => (
             <FontAwesome name="user-circle" color={color} size={36} />
