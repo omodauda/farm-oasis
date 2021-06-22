@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontFamily: 'Montserrat-Bold',
-    fontWeight: '700',
+    fontWeight: '600',
     fontSize: 18,
     color: Colors.primary,
   },
