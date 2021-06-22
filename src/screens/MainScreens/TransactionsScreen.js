@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, StyleSheet, StatusBar} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
+import FocusAwareStatusBar from '@navigations/FocusAwareStatusBar';
 import Colors from '@constants/Colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import TopTabNavigator from '@navigations/TopTabNavigators/TransactionsTopTabNavigator';
@@ -7,7 +8,10 @@ import TopTabNavigator from '@navigations/TopTabNavigators/TransactionsTopTabNav
 export default function TransactionsScreen({navigation}) {
   return (
     <View style={styles.screen}>
-      <StatusBar backgroundColor={Colors.primary} barStyle="dark-content" />
+      <FocusAwareStatusBar
+        backgroundColor={Colors.primary}
+        barStyle="dark-content"
+      />
       <View style={styles.header}>
         <MaterialIcons
           name="keyboard-backspace"

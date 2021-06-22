@@ -31,7 +31,7 @@ export default function (props) {
               )}
               label="Settings"
               labelStyle={styles.labelStyle}
-              //   onPress={() => props.navigation.navigate('Settings')}
+              // onPress={() => props.navigation.navigate('Settings')}
             />
           </View>
           <View style={styles.drawerSection}>

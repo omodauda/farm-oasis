@@ -3,11 +3,11 @@ import {
   View,
   Text,
   StyleSheet,
-  StatusBar,
   FlatList,
   Image,
   TouchableOpacity,
 } from 'react-native';
+import FocusAwareStatusBar from '@navigations/FocusAwareStatusBar';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Colors from '@constants/Colors';
 import {FARMS} from '@data/index';
@@ -21,7 +21,7 @@ export default function HomeScreen({navigation}) {
 
   return (
     <View style={styles.screen}>
-      <StatusBar backgroundColor="white" barStyle="dark-content" />
+      <FocusAwareStatusBar backgroundColor="white" barStyle="dark-content" />
       <View style={styles.header}>
         <Text style={styles.headerText}>Hi, Andrew</Text>
         <MaterialCommunityIcons

@@ -10,6 +10,7 @@ const Drawer = createDrawerNavigator();
 export default function () {
   return (
     <Drawer.Navigator
+      overlayColor="rgba(196, 196, 196, 0.75)"
       drawerContent={props => <CustomDrawerContent {...props} />}>
       <Drawer.Screen name="Settings" component={SettingsScreen} />
     </Drawer.Navigator>
