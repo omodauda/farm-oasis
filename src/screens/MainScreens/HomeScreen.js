@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {
   View,
@@ -17,6 +17,12 @@ export default function HomeScreen({navigation}) {
   const user = useSelector(state => state.auth.user);
   console.log(user);
   const {firstName} = user;
+
+  useEffect(() => {
+    navigation.addListener('beforeRemove', e => {
+      e.preventDefault();
+    });
+  });
 
   const renderItem = ({item}) => (
     <View style={styles.imageContainer}>

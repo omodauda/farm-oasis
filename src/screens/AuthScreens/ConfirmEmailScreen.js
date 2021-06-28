@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {
   View,
@@ -43,6 +43,12 @@ export default function ConfirmEmailScreen({navigation}) {
     }
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    navigation.addListener('beforeRemove', e => {
+      e.preventDefault();
+    });
+  });
 
   return (
     <ScrollView style={styles.screen}>
