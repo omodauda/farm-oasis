@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   View,
   Text,
@@ -7,13 +8,45 @@ import {
   Image,
   StatusBar,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
 import {Formik, Field} from 'formik';
 import CustomTextInput from '@components/CustomTextInput';
 import Colors from '@constants/Colors';
 import {confirmEmailValidationSchema} from '@validations/ConfirmEmailValidation';
+import {verifyUser, resendConfirmationToken} from '@store/actions/auth';
 
 export default function ConfirmEmailScreen() {
+  const [error, setError] = useState(error);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const user = useSelector(state => state.auth.user);
+  console.log(user);
+  const dispatch = useDispatch();
+
+  const confirmTokenHandler = async ({confirmation_token}) => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      await dispatch(verifyUser(confirmation_token));
+      // navigation.navigate('ConfirmEmail');
+    } catch (err) {
+      setError(err.message);
+    }
+    setIsLoading(false);
+  };
+
+  const resendTokenHandler = async () => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      await dispatch(resendConfirmationToken());
+    } catch (err) {
+      setError(err.message);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <ScrollView style={styles.screen}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
@@ -36,7 +69,7 @@ export default function ConfirmEmailScreen() {
         initialValues={{
           confirmation_token: '',
         }}
-        onSubmit={values => console.log(values)}>
+        onSubmit={values => confirmTokenHandler(values)}>
         {({handleSubmit, isValid, errors}) => (
           <>
             <View style={styles.formControl}>
@@ -55,7 +88,10 @@ export default function ConfirmEmailScreen() {
                 </Text>
               )}
             </View>
-
+            {isLoading && (
+              <ActivityIndicator size="small" color={Colors.primary} />
+            )}
+            {error && <Text style={styles.networkErrorText}>{error}</Text>}
             <View style={styles.buttonContainer}>
               <TouchableOpacity
                 style={styles.button}
@@ -65,7 +101,7 @@ export default function ConfirmEmailScreen() {
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.button}
-                onPress={handleSubmit}
+                onPress={() => resendTokenHandler()}
                 disabled={!isValid}>
                 <Text style={styles.buttonText}>Resend Token</Text>
               </TouchableOpacity>
@@ -149,5 +185,11 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontFamily: 'Montserrat-Medium',
     color: '#243D44',
+  },
+  networkErrorText: {
+    color: 'red',
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 10,
   },
 });
