@@ -1,4 +1,5 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import {
   View,
   Text,
@@ -13,6 +14,10 @@ import Colors from '@constants/Colors';
 import {FARMS} from '@data/index';
 
 export default function HomeScreen({navigation}) {
+  const user = useSelector(state => state.auth.user);
+  console.log(user);
+  const {firstName} = user;
+
   const renderItem = ({item}) => (
     <View style={styles.imageContainer}>
       <Image source={item.image} style={styles.image} />
@@ -23,7 +28,7 @@ export default function HomeScreen({navigation}) {
     <View style={styles.screen}>
       <FocusAwareStatusBar backgroundColor="white" barStyle="dark-content" />
       <View style={styles.header}>
-        <Text style={styles.headerText}>Hi, Andrew</Text>
+        <Text style={styles.headerText}>Hi, {firstName}</Text>
         <MaterialCommunityIcons
           name="bell-circle"
           size={37}

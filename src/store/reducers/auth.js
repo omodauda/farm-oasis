@@ -1,4 +1,4 @@
-import {SIGNUP} from '@store/actions/auth';
+import {SIGNUP, VERIFY_USER} from '@store/actions/auth';
 const initialState = {
   user: {
     token: null,
@@ -33,6 +33,10 @@ export default function authReducer(state = initialState, action) {
           email,
           referralCode,
         },
+      };
+    case VERIFY_USER:
+      return {
+        user: {...state.user, isVerified: true},
       };
     default:
       return state;

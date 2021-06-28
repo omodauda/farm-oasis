@@ -65,15 +65,9 @@ export const verifyUser = confirmToken => {
       const resData = await response.json();
       throw new Error(resData.error);
     }
-    // const resData = await response.json();
-    // const {
-    //   token,
-    //   isAdmin,
-    //   isVerified,
-    //   firstName: first_name,
-    //   lastName: last_name,
-    //   referralCode,
-    // } = resData;
+    dispatch({
+      type: VERIFY_USER,
+    });
   };
 };
 

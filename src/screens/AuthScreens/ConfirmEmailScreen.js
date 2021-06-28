@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {
   View,
   Text,
@@ -16,12 +16,9 @@ import Colors from '@constants/Colors';
 import {confirmEmailValidationSchema} from '@validations/ConfirmEmailValidation';
 import {verifyUser, resendConfirmationToken} from '@store/actions/auth';
 
-export default function ConfirmEmailScreen() {
+export default function ConfirmEmailScreen({navigation}) {
   const [error, setError] = useState(error);
   const [isLoading, setIsLoading] = useState(false);
-
-  const user = useSelector(state => state.auth.user);
-  console.log(user);
   const dispatch = useDispatch();
 
   const confirmTokenHandler = async ({confirmation_token}) => {
@@ -29,7 +26,7 @@ export default function ConfirmEmailScreen() {
     setIsLoading(true);
     try {
       await dispatch(verifyUser(confirmation_token));
-      // navigation.navigate('ConfirmEmail');
+      navigation.navigate('Main');
     } catch (err) {
       setError(err.message);
     }
