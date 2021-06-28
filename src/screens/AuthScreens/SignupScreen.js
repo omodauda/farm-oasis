@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {
   ScrollView,
   Text,
@@ -6,6 +7,7 @@ import {
   View,
   TouchableOpacity,
   StatusBar,
+  ActivityIndicator,
 } from 'react-native';
 import {Formik, Field} from 'formik';
 import CustomTextInput from '@components/CustomTextInput';
@@ -14,8 +16,32 @@ import Colors from '@constants/Colors';
 import Icon from 'react-native-vector-icons/Feather';
 import Modal from '@components/Modal';
 
+import {signup} from '@store/actions/auth';
+
 export default function SignupScreen({navigation}) {
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const dispatch = useDispatch();
+
+  const signupHandler = async ({
+    firstName,
+    lastName,
+    email,
+    phone,
+    password,
+  }) => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      await dispatch(signup(firstName, lastName, email, phone, password));
+      navigation.navigate('ConfirmEmail');
+    } catch (err) {
+      setError(err.message);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <ScrollView style={styles.screen}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
@@ -30,10 +56,7 @@ export default function SignupScreen({navigation}) {
           phone: '',
           password: '',
         }}
-        onSubmit={values => {
-          console.log(values);
-          navigation.navigate('ConfirmEmail');
-        }}>
+        onSubmit={values => signupHandler(values)}>
         {({handleSubmit, isValid, errors}) => (
           <>
             <View style={styles.formControl}>
@@ -124,6 +147,10 @@ export default function SignupScreen({navigation}) {
               <Text style={styles.underlinedText}>Terms & Conditions</Text> and{' '}
               <Text style={styles.underlinedText}>Privacy Policy</Text>
             </Text>
+            {isLoading && (
+              <ActivityIndicator size="small" color={Colors.primary} />
+            )}
+            {error && <Text style={styles.networkErrorText}>{error}</Text>}
             <TouchableOpacity
               style={styles.button}
               onPress={handleSubmit}
@@ -209,5 +236,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '500',
     fontFamily: 'Montserrat-Medium',
+  },
+  networkErrorText: {
+    color: 'red',
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 10,
   },
 });

@@ -5,7 +5,11 @@ import reduxThunk from 'redux-thunk';
 import {NavigationContainer} from '@react-navigation/native';
 import AppNavigator from '@navigations/AppNavigator';
 
-const rootReducer = combineReducers({});
+import authReducer from '@store/reducers/auth';
+
+const rootReducer = combineReducers({
+  auth: authReducer,
+});
 
 const store = createStore(rootReducer, applyMiddleware(reduxThunk));
 

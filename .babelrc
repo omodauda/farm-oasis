@@ -11,7 +11,8 @@
           "@navigations": "./src/navigations",
           "@screens": "./src/screens",
           "@validations": "./src/validations",
-          "@data": "./src/data"
+          "@data": "./src/data",
+          "@store": "./src/store"
         }
       }]
     ]

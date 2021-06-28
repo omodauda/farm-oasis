@@ -10,6 +10,7 @@
           "@screens/*": ["src/screens/*"],
           "@validations/*": ["src/validations/*"],
           "@data/*": ["src/data/*"],
+          "@store/*": ["src/store/*"],
         }
     }
 } 
