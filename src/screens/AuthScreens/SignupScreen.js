@@ -7,7 +7,6 @@ import {
   View,
   TouchableOpacity,
   StatusBar,
-  ActivityIndicator,
 } from 'react-native';
 import {Formik, Field} from 'formik';
 import CustomTextInput from '@components/CustomTextInput';
@@ -15,6 +14,7 @@ import {signupValidationSchema} from '@validations/SignupValidation';
 import Colors from '@constants/Colors';
 import Icon from 'react-native-vector-icons/Feather';
 import Modal from '@components/Modal';
+import LoadingComponent from '@components/LoadingComponent';
 
 import {signup} from '@store/actions/auth';
 
@@ -147,9 +147,7 @@ export default function SignupScreen({navigation}) {
               <Text style={styles.underlinedText}>Terms & Conditions</Text> and{' '}
               <Text style={styles.underlinedText}>Privacy Policy</Text>
             </Text>
-            {isLoading && (
-              <ActivityIndicator size="small" color={Colors.primary} />
-            )}
+            {isLoading && <LoadingComponent />}
             {error && <Text style={styles.networkErrorText}>{error}</Text>}
             <TouchableOpacity
               style={styles.button}

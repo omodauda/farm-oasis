@@ -8,10 +8,10 @@ import {
   Image,
   StatusBar,
   TouchableOpacity,
-  ActivityIndicator,
 } from 'react-native';
 import {Formik, Field} from 'formik';
 import CustomTextInput from '@components/CustomTextInput';
+import LoadingComponent from '@components/LoadingComponent';
 import Colors from '@constants/Colors';
 import {confirmEmailValidationSchema} from '@validations/ConfirmEmailValidation';
 import {verifyUser, resendConfirmationToken} from '@store/actions/auth';
@@ -88,9 +88,7 @@ export default function ConfirmEmailScreen() {
                 </Text>
               )}
             </View>
-            {isLoading && (
-              <ActivityIndicator size="small" color={Colors.primary} />
-            )}
+            {isLoading && <LoadingComponent />}
             {error && <Text style={styles.networkErrorText}>{error}</Text>}
             <View style={styles.buttonContainer}>
               <TouchableOpacity
