@@ -1,4 +1,5 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import {
   View,
   Text,
@@ -10,6 +11,9 @@ import Colors from '@constants/Colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function ReferralsScreen() {
+  const user = useSelector(state => state.auth.user);
+  const {referralCode} = user;
+
   return (
     <View style={styles.screen}>
       <ScrollView style={styles.scrollView}>
@@ -19,7 +23,7 @@ export default function ReferralsScreen() {
         </View>
         <View style={styles.referral}>
           <Text style={styles.referralText}>Referral Code</Text>
-          <Text style={styles.code}>ANDR1234</Text>
+          <Text style={styles.code}>{referralCode}</Text>
           <TouchableOpacity style={styles.copyBtn}>
             <Text style={styles.copyText}>COPY CODE</Text>
           </TouchableOpacity>

@@ -1,4 +1,5 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import Colors from '@constants/Colors';
@@ -7,6 +8,9 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function (props) {
+  const user = useSelector(state => state.auth.user);
+  const {firstName, lastName, referralCode} = user;
+
   return (
     <View style={styles.drawer}>
       <DrawerContentScrollView
@@ -20,8 +24,10 @@ export default function (props) {
                 source={require('@assets/images/avatar.png')}
               />
             </View>
-            <Text style={styles.nameText}>Andrew Abel</Text>
-            <Text style={styles.username}>ANDR1234</Text>
+            <Text style={styles.nameText}>
+              {firstName} {lastName}
+            </Text>
+            <Text style={styles.username}>{referralCode}</Text>
           </View>
 
           <View style={styles.drawerSection}>
