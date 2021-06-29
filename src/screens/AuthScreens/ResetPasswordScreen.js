@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {
   View,
   Text,
@@ -12,8 +13,46 @@ import {Formik, Field} from 'formik';
 import CustomTextInput from '@components/CustomTextInput';
 import {resetPasswordValidationSchema} from '@validations/ResetPasswordValidation';
 import Colors from '@constants/Colors';
+import LoadingComponent from '@components/LoadingComponent';
 
-export default function ResetPasswordScreen() {
+import {forgetPassword, resetpassword} from '@store/actions/auth';
+
+export default function ResetPasswordScreen({navigation, route}) {
+  const {email} = route.params;
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+
+  const resetPasswordHandler = async ({reset_token, password}) => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      await dispatch(resetpassword(email, reset_token, password));
+      navigation.push('Login');
+    } catch (err) {
+      setError(err.message);
+    }
+    setIsLoading(false);
+  };
+
+  const resendResetTokenHandler = async () => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      await dispatch(forgetPassword(email));
+    } catch (err) {
+      setError(err.message);
+    }
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    navigation.addListener('beforeRemove', e => {
+      e.preventDefault();
+    });
+  });
+
   return (
     <ScrollView style={styles.screen}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
@@ -36,7 +75,7 @@ export default function ResetPasswordScreen() {
           password: '',
           confirm_password: '',
         }}
-        onSubmit={values => console.log(values)}>
+        onSubmit={values => resetPasswordHandler(values)}>
         {({handleSubmit, isValid, errors}) => (
           <>
             <View style={styles.formControl}>
@@ -84,17 +123,19 @@ export default function ResetPasswordScreen() {
               )}
             </View>
 
+            {isLoading && <LoadingComponent />}
+            {error && <Text style={styles.networkErrorText}>{error}</Text>}
+
             <View style={styles.buttonContainer}>
               <TouchableOpacity
                 style={styles.button}
                 onPress={handleSubmit}
                 disabled={!isValid}>
-                <Text style={styles.buttonText}>Confirm Email</Text>
+                <Text style={styles.buttonText}>Reset Password</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.button}
-                onPress={handleSubmit}
-                disabled={!isValid}>
+                onPress={() => resendResetTokenHandler()}>
                 <Text style={styles.buttonText}>Resend Token</Text>
               </TouchableOpacity>
             </View>
@@ -178,5 +219,11 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontFamily: 'Montserrat-Medium',
     color: '#243D44',
+  },
+  networkErrorText: {
+    color: 'red',
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 10,
   },
 });

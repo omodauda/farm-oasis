@@ -2,7 +2,6 @@ import {API_URL} from '@constants/url';
 
 export const AUTHENTICATE = 'AUTHENTICATE';
 export const VERIFY_USER = 'VERIFY_USER';
-export const FORGET_PASSWORD = 'FORGET_PASSWORD';
 
 export const authenticate = (
   token,
@@ -163,6 +162,27 @@ export const forgetPassword = email => {
       },
       body: JSON.stringify({
         email,
+      }),
+    });
+
+    if (!response.ok) {
+      const resData = await response.json();
+      throw new Error(resData.error);
+    }
+  };
+};
+
+export const resetpassword = (email, resetToken, newPassword) => {
+  return async dispatch => {
+    const response = await fetch(`${API_URL}/user/reset-password`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        resetToken,
+        newPassword,
       }),
     });
 
