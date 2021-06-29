@@ -1,7 +1,28 @@
 import {API_URL} from '@constants/url';
 
-export const SIGNUP = 'SIGNUP';
+export const AUTHENTICATE = 'AUTHENTICATE';
 export const VERIFY_USER = 'VERIFY_USER';
+
+export const authenticate = (
+  token,
+  isAdmin,
+  isVerified,
+  user_email,
+  first_name,
+  last_name,
+  referralCode,
+) => {
+  return {
+    type: AUTHENTICATE,
+    token,
+    isAdmin,
+    isVerified,
+    email: user_email,
+    firstName: first_name,
+    lastName: last_name,
+    referralCode,
+  };
+};
 
 export const signup = (firstName, lastName, email, phone, password) => {
   return async dispatch => {
@@ -33,16 +54,17 @@ export const signup = (firstName, lastName, email, phone, password) => {
       lastName: last_name,
       referralCode,
     } = resData.data;
-    dispatch({
-      type: SIGNUP,
-      token,
-      isAdmin,
-      isVerified,
-      email: user_email,
-      firstName: first_name,
-      lastName: last_name,
-      referralCode,
-    });
+    dispatch(
+      authenticate(
+        token,
+        isAdmin,
+        isVerified,
+        user_email,
+        first_name,
+        last_name,
+        referralCode,
+      ),
+    );
   };
 };
 
@@ -87,5 +109,46 @@ export const resendConfirmationToken = () => {
       const resData = await response.json();
       throw new Error(resData.error);
     }
+  };
+};
+
+export const login = (email, password) => {
+  return async dispatch => {
+    const response = await fetch(`${API_URL}/user/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    if (!response.ok) {
+      const resData = await response.json();
+      throw new Error(resData.error);
+    }
+    const resData = await response.json();
+    const {
+      token,
+      isAdmin,
+      isVerified,
+      email: user_email,
+      firstName: first_name,
+      lastName: last_name,
+      referralCode,
+    } = resData.data;
+    dispatch(
+      authenticate(
+        token,
+        isAdmin,
+        isVerified,
+        user_email,
+        first_name,
+        last_name,
+        referralCode,
+      ),
+    );
   };
 };

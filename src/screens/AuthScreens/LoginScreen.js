@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {
   View,
   Text,
@@ -11,11 +12,28 @@ import {Formik, Field} from 'formik';
 import CustomTextInput from '@components/CustomTextInput';
 import CheckBox from '@react-native-community/checkbox';
 import Colors from '@constants/Colors';
+import LoadingComponent from '@components/LoadingComponent';
 import {loginValidationSchema} from '@validations/LoginValidation';
+import {login} from '@store/actions/auth';
 
 export default function LoginScreen({navigation}) {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
+  const dispatch = useDispatch();
+
+  const loginHandler = async ({email, password}) => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      await dispatch(login(email, password));
+      navigation.navigate('Main');
+    } catch (err) {
+      setError(err.message);
+    }
+    setIsLoading(false);
+  };
   return (
     <ScrollView style={styles.screen}>
       <StatusBar barStyle="dark-content" backgroundColor={Colors.primary} />
@@ -29,8 +47,9 @@ export default function LoginScreen({navigation}) {
           email: '',
           password: '',
         }}
-        onSubmit={values =>
-          console.log({...values, rememberUser: toggleCheckBox})
+        onSubmit={
+          values => loginHandler(values)
+          // console.log({...values, rememberUser: toggleCheckBox})
         }>
         {({handleSubmit, isValid, errors}) => (
           <>
@@ -56,6 +75,7 @@ export default function LoginScreen({navigation}) {
                 keyboardType="default"
                 placeholder="Enter Password"
                 placeholderTextColor="white"
+                secureTextEntry
                 style={styles.input}
               />
               {errors.password && (
@@ -71,6 +91,9 @@ export default function LoginScreen({navigation}) {
               />
               <Text style={styles.notice}>Remember me</Text>
             </View>
+
+            {isLoading && <LoadingComponent color="white" />}
+            {error && <Text style={styles.networkErrorText}>{error}</Text>}
 
             <TouchableOpacity
               style={styles.button}
@@ -193,5 +216,11 @@ const styles = StyleSheet.create({
   signupLink: {
     fontWeight: '600',
     fontFamily: 'Montserrat-SemiBold',
+  },
+  networkErrorText: {
+    color: 'red',
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 10,
   },
 });

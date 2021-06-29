@@ -1,4 +1,4 @@
-import {SIGNUP, VERIFY_USER} from '@store/actions/auth';
+import {AUTHENTICATE, VERIFY_USER} from '@store/actions/auth';
 const initialState = {
   user: {
     token: null,
@@ -13,7 +13,7 @@ const initialState = {
 
 export default function authReducer(state = initialState, action) {
   switch (action.type) {
-    case SIGNUP:
+    case AUTHENTICATE:
       const {
         token,
         firstName,
