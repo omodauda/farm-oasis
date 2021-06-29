@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {
   View,
   Text,
@@ -10,8 +11,27 @@ import {Formik, Field} from 'formik';
 import CustomTextInput from '@components/CustomTextInput';
 import Colors from '@constants/Colors';
 import {forgetPasswordValidationSchema} from '@validations/ForgetPasswordValidation';
+import LoadingComponent from '@components/LoadingComponent';
+
+import {forgetPassword} from '@store/actions/auth';
 
 export default function ForgetPasswordScreen({navigation}) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+
+  const forgetPasswordHandler = async ({email}) => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      await dispatch(forgetPassword(email));
+      navigation.navigate('ResetPassword', {email});
+    } catch (err) {
+      setError(err.message);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <View style={styles.screen}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
@@ -25,10 +45,7 @@ export default function ForgetPasswordScreen({navigation}) {
         initialValues={{
           email: '',
         }}
-        onSubmit={values => {
-          console.log(values);
-          navigation.navigate('ResetPassword');
-        }}>
+        onSubmit={values => forgetPasswordHandler(values)}>
         {({handleSubmit, isValid, errors}) => (
           <>
             <View style={styles.formControl}>
@@ -45,6 +62,9 @@ export default function ForgetPasswordScreen({navigation}) {
                 <Text style={styles.errorText}>{errors.email}</Text>
               )}
             </View>
+
+            {isLoading && <LoadingComponent />}
+            {error && <Text style={styles.networkErrorText}>{error}</Text>}
 
             <TouchableOpacity
               style={styles.button}
@@ -116,5 +136,11 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontFamily: 'Montserrat-Medium',
     color: Colors.text,
+  },
+  networkErrorText: {
+    color: 'red',
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 10,
   },
 });
