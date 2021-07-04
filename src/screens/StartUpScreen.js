@@ -18,15 +18,17 @@ export default function StartUpScreen({navigation}) {
 
   useEffect(() => {
     const getUserData = async () => {
-      const storage = await AsyncStorage.getItem('tokens');
-      if (!storage) {
-        navigation.navigate('Auth');
-        return;
-      }
-      const tokens = JSON.parse(storage);
-      const {accessToken, refreshToken} = tokens;
-      dispatch(getUser(accessToken, refreshToken));
-      navigation.navigate('Main');
+      setTimeout(async () => {
+        const storage = await AsyncStorage.getItem('tokens');
+        if (!storage) {
+          navigation.navigate('Auth');
+          return;
+        }
+        const tokens = JSON.parse(storage);
+        const {accessToken, refreshToken} = tokens;
+        dispatch(getUser(accessToken, refreshToken));
+        navigation.navigate('Main');
+      }, 3000);
     };
     getUserData();
   });
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
   logoText: {
     fontSize: 38,
     color: Colors.primary,
-    fontWeight: '700',
+    fontWeight: '600',
     fontFamily: 'Montserrat-Bold',
   },
 });
