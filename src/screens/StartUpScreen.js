@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useDispatch} from 'react-redux';
 import {
   View,
   ImageBackground,
@@ -7,9 +8,29 @@ import {
   StyleSheet,
   StatusBar,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Colors from '@constants/Colors';
 
-export default function StartUpScreen() {
+import {getUser} from '@store/actions/auth';
+
+export default function StartUpScreen({navigation}) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getUserData = async () => {
+      const storage = await AsyncStorage.getItem('tokens');
+      if (!storage) {
+        navigation.navigate('Auth');
+        return;
+      }
+      const tokens = JSON.parse(storage);
+      const {accessToken, refreshToken} = tokens;
+      dispatch(getUser(accessToken, refreshToken));
+      navigation.navigate('Main');
+    };
+    getUserData();
+  });
+
   return (
     <View style={styles.screen}>
       <StatusBar backgroundColor={Colors.background} barStyle="dark-content" />

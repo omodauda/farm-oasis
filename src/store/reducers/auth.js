@@ -2,6 +2,7 @@ import {AUTHENTICATE, VERIFY_USER} from '@store/actions/auth';
 const initialState = {
   user: {
     token: null,
+    refreshToken: null,
     isAdmin: null,
     isVerified: null,
     firstName: null,
@@ -16,6 +17,7 @@ export default function authReducer(state = initialState, action) {
     case AUTHENTICATE:
       const {
         token,
+        refreshToken,
         firstName,
         lastName,
         email,
@@ -26,6 +28,7 @@ export default function authReducer(state = initialState, action) {
       return {
         user: {
           token,
+          refreshToken,
           isAdmin,
           isVerified,
           firstName,

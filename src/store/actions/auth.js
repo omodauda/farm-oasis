@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {API_URL} from '@constants/url';
 
 export const AUTHENTICATE = 'AUTHENTICATE';
@@ -5,6 +6,7 @@ export const VERIFY_USER = 'VERIFY_USER';
 
 export const authenticate = (
   token,
+  refreshToken,
   isAdmin,
   isVerified,
   user_email,
@@ -15,6 +17,7 @@ export const authenticate = (
   return {
     type: AUTHENTICATE,
     token,
+    refreshToken,
     isAdmin,
     isVerified,
     email: user_email,
@@ -47,6 +50,7 @@ export const signup = (firstName, lastName, email, phone, password) => {
     const resData = await response.json();
     const {
       token,
+      refreshToken,
       isAdmin,
       isVerified,
       email: user_email,
@@ -57,6 +61,7 @@ export const signup = (firstName, lastName, email, phone, password) => {
     dispatch(
       authenticate(
         token,
+        refreshToken,
         isAdmin,
         isVerified,
         user_email,
@@ -65,6 +70,7 @@ export const signup = (firstName, lastName, email, phone, password) => {
         referralCode,
       ),
     );
+    saveTokensToStorage(token, refreshToken);
   };
 };
 
@@ -132,6 +138,7 @@ export const login = (email, password) => {
     const resData = await response.json();
     const {
       token,
+      refreshToken,
       isAdmin,
       isVerified,
       email: user_email,
@@ -142,6 +149,7 @@ export const login = (email, password) => {
     dispatch(
       authenticate(
         token,
+        refreshToken,
         isAdmin,
         isVerified,
         user_email,
@@ -150,6 +158,7 @@ export const login = (email, password) => {
         referralCode,
       ),
     );
+    saveTokensToStorage(token, refreshToken);
   };
 };
 
@@ -172,6 +181,45 @@ export const forgetPassword = email => {
   };
 };
 
+export const getUser = (token, refreshToken) => {
+  return async dispatch => {
+    const response = await fetch(`${API_URL}/user`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        // eslint-disable-next-line prettier/prettier
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const resData = await response.json();
+      throw new Error(resData.error);
+    }
+    const resData = await response.json();
+    const {
+      isAdmin,
+      isVerified,
+      email: user_email,
+      firstName: first_name,
+      lastName: last_name,
+      referralCode,
+    } = resData.data;
+    dispatch(
+      authenticate(
+        token,
+        refreshToken,
+        isAdmin,
+        isVerified,
+        user_email,
+        first_name,
+        last_name,
+        referralCode,
+      ),
+    );
+  };
+};
+
 export const resetpassword = (email, resetToken, newPassword) => {
   return async dispatch => {
     const response = await fetch(`${API_URL}/user/reset-password`, {
@@ -191,4 +239,14 @@ export const resetpassword = (email, resetToken, newPassword) => {
       throw new Error(resData.error);
     }
   };
+};
+
+const saveTokensToStorage = (accessToken, refreshToken) => {
+  AsyncStorage.setItem(
+    'tokens',
+    JSON.stringify({
+      accessToken,
+      refreshToken,
+    }),
+  );
 };

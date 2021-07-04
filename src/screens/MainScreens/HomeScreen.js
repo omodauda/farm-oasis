@@ -15,7 +15,6 @@ import {FARMS} from '@data/index';
 
 export default function HomeScreen({navigation}) {
   const user = useSelector(state => state.auth.user);
-  console.log(user);
   const {firstName} = user;
 
   useEffect(() => {
