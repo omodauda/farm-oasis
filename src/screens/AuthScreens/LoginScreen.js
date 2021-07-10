@@ -165,6 +165,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 14,
     fontFamily: 'Montserrat-Medium',
+    fontWeight: '500',
   },
   spacedInput: {
     marginBottom: 20,
@@ -222,5 +223,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     marginBottom: 10,
+    fontFamily: 'Montserrat-Regular',
   },
 });

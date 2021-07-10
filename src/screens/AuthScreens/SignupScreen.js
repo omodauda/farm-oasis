@@ -187,6 +187,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.secondary,
     borderRadius: 3,
+    fontWeight: '500',
     fontFamily: 'Montserrat-Medium',
     fontSize: 14,
     color: Colors.text,
@@ -205,7 +206,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     marginRight: 5,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '600',
     fontFamily: 'Montserrat-Bold',
   },
   info: {
@@ -216,12 +217,13 @@ const styles = StyleSheet.create({
   },
   quotedText: {
     color: Colors.primary,
-    fontWeight: 'bold',
+    fontWeight: '600',
     fontFamily: 'Montserrat-Bold',
   },
   underlinedText: {
     textDecorationLine: 'underline',
     fontFamily: 'Montserrat-Medium',
+    fontWeight: '500',
   },
   button: {
     backgroundColor: Colors.primary,
