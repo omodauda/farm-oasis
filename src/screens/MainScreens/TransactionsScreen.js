@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import FocusAwareStatusBar from '@navigations/FocusAwareStatusBar';
 import Colors from '@constants/Colors';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import TopTabNavigator from '@navigations/TopTabNavigators/TransactionsTopTabNavigator';
+
+import CustomHeader from '@components/CustomHeader';
 
 export default function TransactionsScreen({navigation}) {
   return (
@@ -12,16 +13,11 @@ export default function TransactionsScreen({navigation}) {
         backgroundColor={Colors.primary}
         barStyle="dark-content"
       />
-      <View style={styles.header}>
-        <MaterialIcons
-          name="keyboard-backspace"
-          size={28}
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
-        <Text style={styles.headerTitle}>Transactions</Text>
-      </View>
+      <CustomHeader
+        navigation={navigation}
+        style={styles.header}
+        title="Transactions"
+      />
       <TopTabNavigator />
     </View>
   );
@@ -38,11 +34,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 24,
     marginBottom: 5,
-  },
-  headerTitle: {
-    fontFamily: 'Montserrat-SemiBold',
-    fontWeight: '600',
-    fontSize: 24,
-    marginLeft: '16%',
   },
 });

@@ -1,23 +1,19 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import FocusAwareStatusBar from '@navigations/FocusAwareStatusBar';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import TopTabNavigator from '@navigations/TopTabNavigators/ExploreTopTabNavigator';
+
+import CustomHeader from '@components/CustomHeader';
 
 export default function ExploreFarmsScreen({navigation}) {
   return (
     <View style={styles.screen}>
       <FocusAwareStatusBar backgroundColor="white" barStyle="dark-content" />
-      <View style={styles.header}>
-        <MaterialIcons
-          name="keyboard-backspace"
-          size={28}
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
-        <Text style={styles.headerTitle}>Explore Farms</Text>
-      </View>
+      <CustomHeader
+        navigation={navigation}
+        style={styles.header}
+        title="Explore Farms"
+      />
       <TopTabNavigator />
     </View>
   );
@@ -35,11 +31,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 25,
-  },
-  headerTitle: {
-    fontFamily: 'Montserrat-SemiBold',
-    fontWeight: '600',
-    fontSize: 24,
-    marginLeft: '16%',
   },
 });
