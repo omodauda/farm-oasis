@@ -4,9 +4,8 @@ import {DrawerActions} from '@react-navigation/native';
 import Colors from '@constants/Colors';
 
 // Screens
-import HomeScreen from '@screens/MainScreens/HomeScreen';
+import HomeStack from '@navigations/HomeStack';
 import TransactionsScreen from '@screens/MainScreens/TransactionsScreen';
-import ExploreFarmsScreen from '@screens/MainScreens/ExploreFarmsScreen';
 import ProfileDrawerNaviagtor from '@navigations/ProfileDrawerNavigation';
 
 // tab bar icons
@@ -18,13 +17,6 @@ const Tab = createBottomTabNavigator();
 export default function MainNavigator() {
   return (
     <Tab.Navigator
-      screenOptions={({route}) => ({
-        tabBarButton: ['ExploreFarms'].includes(route.name)
-          ? () => {
-              return null;
-            }
-          : undefined,
-      })}
       tabBarOptions={{
         style: {
           height: 70,
@@ -39,7 +31,7 @@ export default function MainNavigator() {
       }}>
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        component={HomeStack}
         options={{
           tabBarIcon: ({focused, size, color}) => (
             <MaterialCommunityIcons
@@ -71,13 +63,6 @@ export default function MainNavigator() {
           tabBarIcon: ({focused, size, color}) => (
             <FontAwesome name="user-circle" color={color} size={36} />
           ),
-        }}
-      />
-      <Tab.Screen
-        name="ExploreFarms"
-        component={ExploreFarmsScreen}
-        options={{
-          tabBarVisible: false,
         }}
       />
     </Tab.Navigator>
