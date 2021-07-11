@@ -1,30 +1,39 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import Colors from '@constants/Colors';
 
-export default function FarmItem({item}) {
+export default function FarmItem({navigation, item}) {
   return (
-    <View style={styles.farmItem}>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={item.image} />
+    <TouchableWithoutFeedback
+      onPress={() => navigation.navigate('FarmDetails')}>
+      <View style={styles.farmItem}>
+        <View style={styles.imageContainer}>
+          <Image style={styles.image} source={item.image} />
+        </View>
+        <View style={styles.details}>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.title}>{item.location}</Text>
+          <View style={styles.section}>
+            <Text style={styles.highlight}>₦{item.amount}</Text>
+            <Text style={styles.label}>Amount</Text>
+          </View>
+          <View style={styles.section}>
+            <Text style={styles.highlight}>{item.duration}</Text>
+            <Text style={styles.label}>Duration</Text>
+          </View>
+          <View style={styles.section}>
+            <Text style={styles.highlight}>{item.roi}</Text>
+            <Text style={styles.label}>Return on investment</Text>
+          </View>
+        </View>
       </View>
-      <View style={styles.details}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.title}>{item.location}</Text>
-        <View style={styles.section}>
-          <Text style={styles.highlight}>₦{item.amount}</Text>
-          <Text style={styles.label}>Amount</Text>
-        </View>
-        <View style={styles.section}>
-          <Text style={styles.highlight}>{item.duration}</Text>
-          <Text style={styles.label}>Duration</Text>
-        </View>
-        <View style={styles.section}>
-          <Text style={styles.highlight}>{item.roi}</Text>
-          <Text style={styles.label}>Return on investment</Text>
-        </View>
-      </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 

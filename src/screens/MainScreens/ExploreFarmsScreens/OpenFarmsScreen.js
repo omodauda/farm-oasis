@@ -3,7 +3,7 @@ import {View, FlatList, StyleSheet} from 'react-native';
 import {FARMS} from '@data/index';
 import FarmItem from '@components/FarmItem';
 
-export default function OpenFarmsScreen() {
+export default function OpenFarmsScreen({navigation}) {
   const openFarms = FARMS.filter(farm => farm.status === 'open');
 
   return (
@@ -11,7 +11,9 @@ export default function OpenFarmsScreen() {
       <FlatList
         data={openFarms}
         keyExtractor={item => item.id}
-        renderItem={({item}) => <FarmItem item={item} />}
+        renderItem={({item}) => (
+          <FarmItem navigation={navigation} item={item} />
+        )}
       />
     </View>
   );
