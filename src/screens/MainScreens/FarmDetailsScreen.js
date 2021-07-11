@@ -10,43 +10,41 @@ import {
 import FocusAwareStatusBar from '@navigations/FocusAwareStatusBar';
 import CustomHeader from '@components/CustomHeader';
 import Colors from '@constants/Colors';
+import {FARMS} from '@data/index';
 
-export default function FarmDetailsScreen({navigation}) {
+export default function FarmDetailsScreen({navigation, route}) {
+  const {farmId} = route.params;
+  const farm = FARMS.find(f => f.id === farmId);
   return (
     <View style={styles.screen}>
       <FocusAwareStatusBar backgroundColor="white" barStyle="dark-content" />
       <CustomHeader
         navigation={navigation}
         style={styles.header}
-        title="Tomato Farm"
+        title={farm.title}
       />
       <ScrollView>
         <View style={styles.imgContainer}>
-          <Image
-            style={styles.image}
-            source={require('@assets/images/farms/tomato.png')}
-          />
+          <Image style={styles.image} source={farm.image} />
         </View>
         <View style={styles.details}>
           <Text style={styles.title}>Description</Text>
-          <Text style={styles.description}>
-            Tomatoes are the major dietary source of the antioxidant lycopene,
-            which has been linked to many health benefits, including reduced
-            risk of heart diseases and cancer. They are also a great source of
-            vitamin C, potassium, folate and vitamin K. Tomatoes are juicy and
-            sweet, full of antioxidants, and may help fight several diseases.
-          </Text>
+          <Text style={styles.description}>{farm.description}</Text>
           <View style={styles.section}>
             <Text style={styles.amountLabel}>Cost</Text>
-            <Text style={styles.info}>$50,000/unit</Text>
+            <Text style={styles.info}>₦{farm.amount}/unit</Text>
+          </View>
+          <View style={styles.section}>
+            <Text style={styles.label}>Location</Text>
+            <Text style={styles.info}>{farm.location}</Text>
           </View>
           <View style={styles.section}>
             <Text style={styles.label}>Duration</Text>
-            <Text style={styles.info}>4 Months</Text>
+            <Text style={styles.info}>{farm.duration}</Text>
           </View>
           <View style={styles.section}>
             <Text style={styles.label}>Return on investment</Text>
-            <Text style={styles.primaryText}>10%</Text>
+            <Text style={styles.primaryText}>{farm.roi}</Text>
           </View>
 
           <View style={styles.footer}>

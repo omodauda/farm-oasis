@@ -24,9 +24,12 @@ export default function HomeScreen({navigation}) {
   });
 
   const renderItem = ({item}) => (
-    <View style={styles.imageContainer}>
-      <Image source={item.image} style={styles.image} />
-    </View>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('FarmDetails', {farmId: item.id})}>
+      <View style={styles.imageContainer}>
+        <Image source={item.image} style={styles.image} />
+      </View>
+    </TouchableOpacity>
   );
 
   return (

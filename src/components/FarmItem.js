@@ -11,7 +11,7 @@ import Colors from '@constants/Colors';
 export default function FarmItem({navigation, item}) {
   return (
     <TouchableWithoutFeedback
-      onPress={() => navigation.navigate('FarmDetails')}>
+      onPress={() => navigation.navigate('FarmDetails', {farmId: item.id})}>
       <View style={styles.farmItem}>
         <View style={styles.imageContainer}>
           <Image style={styles.image} source={item.image} />
