@@ -8,6 +8,12 @@ export const FARMS = [
     roi: '10%',
     status: 'open',
     image: require('@assets/images/farms/tomato.png'),
+    description:
+      'Tomatoes are the major dietary source of the antioxidant lycopene,\
+    which has been linked to many health benefits, including reduced\
+    risk of heart diseases and cancer. They are also a great source of\
+    vitamin C, potassium, folate and vitamin K. Tomatoes are juicy and\
+    sweet, full of antioxidants, and may help fight several diseases.',
   },
   {
     id: '2',
@@ -18,6 +24,12 @@ export const FARMS = [
     roi: '12%',
     status: 'open',
     image: require('@assets/images/farms/rice.png'),
+    description:
+      'Rice are the major dietary source of the antioxidant lycopene,\
+    which has been linked to many health benefits, including reduced\
+    risk of heart diseases and cancer. They are also a great source of\
+    vitamin C, potassium, folate and vitamin K. Tomatoes are juicy and\
+    sweet, full of antioxidants, and may help fight several diseases.',
   },
   {
     id: '3',
@@ -28,6 +40,12 @@ export const FARMS = [
     roi: '10%',
     status: 'open',
     image: require('@assets/images/farms/cucumber.png'),
+    description:
+      'Cucumber is the major dietary source of the antioxidant lycopene,\
+    which has been linked to many health benefits, including reduced\
+    risk of heart diseases and cancer. They are also a great source of\
+    vitamin C, potassium, folate and vitamin K. Tomatoes are juicy and\
+    sweet, full of antioxidants, and may help fight several diseases.',
   },
   {
     id: '4',
@@ -38,6 +56,12 @@ export const FARMS = [
     roi: '5%',
     status: 'open',
     image: require('@assets/images/farms/vegetable.png'),
+    description:
+      'Vegetables are the major dietary source of the antioxidant lycopene,\
+    which has been linked to many health benefits, including reduced\
+    risk of heart diseases and cancer. They are also a great source of\
+    vitamin C, potassium, folate and vitamin K. Tomatoes are juicy and\
+    sweet, full of antioxidants, and may help fight several diseases.',
   },
   {
     id: '5',
@@ -48,6 +72,12 @@ export const FARMS = [
     roi: '20%',
     status: 'closed',
     image: require('@assets/images/farms/snail.jpeg'),
+    description:
+      'Snails are the major dietary source of the antioxidant lycopene,\
+    which has been linked to many health benefits, including reduced\
+    risk of heart diseases and cancer. They are also a great source of\
+    vitamin C, potassium, folate and vitamin K. Tomatoes are juicy and\
+    sweet, full of antioxidants, and may help fight several diseases.',
   },
   {
     id: '6',
@@ -58,6 +88,12 @@ export const FARMS = [
     roi: '15%',
     status: 'closed',
     image: require('@assets/images/farms/fish.jpeg'),
+    description:
+      'Fish is the major dietary source of the antioxidant lycopene,\
+    which has been linked to many health benefits, including reduced\
+    risk of heart diseases and cancer. They are also a great source of\
+    vitamin C, potassium, folate and vitamin K. Tomatoes are juicy and\
+    sweet, full of antioxidants, and may help fight several diseases.',
   },
   {
     id: '7',
@@ -68,6 +104,12 @@ export const FARMS = [
     roi: '5%',
     status: 'coming soon',
     image: require('@assets/images/farms/soybean.jpeg'),
+    description:
+      'Soybean is the major dietary source of the antioxidant lycopene,\
+    which has been linked to many health benefits, including reduced\
+    risk of heart diseases and cancer. They are also a great source of\
+    vitamin C, potassium, folate and vitamin K. Tomatoes are juicy and\
+    sweet, full of antioxidants, and may help fight several diseases.',
   },
   {
     id: '8',
@@ -78,5 +120,11 @@ export const FARMS = [
     roi: '10%',
     status: 'coming soon',
     image: require('@assets/images/farms/fruits.png'),
+    description:
+      'Fruits are the major dietary source of the antioxidant lycopene,\
+    which has been linked to many health benefits, including reduced\
+    risk of heart diseases and cancer. They are also a great source of\
+    vitamin C, potassium, folate and vitamin K. Tomatoes are juicy and\
+    sweet, full of antioxidants, and may help fight several diseases.',
   },
 ];
