@@ -5,7 +5,7 @@ import Colors from '@constants/Colors';
 
 // Screens
 import HomeStack from '@navigations/HomeStack';
-import TransactionsScreen from '@screens/MainScreens/TransactionsScreen';
+import TransactionsStack from '@navigations/TransactionStack';
 import ProfileDrawerNaviagtor from '@navigations/ProfileDrawerNavigation';
 
 // tab bar icons
@@ -44,7 +44,7 @@ export default function MainNavigator() {
       />
       <Tab.Screen
         name="Transactions"
-        component={TransactionsScreen}
+        component={TransactionsStack}
         options={{
           tabBarIcon: ({focused, size, color}) => (
             <MaterialCommunityIcons name="note-text" color={color} size={42} />

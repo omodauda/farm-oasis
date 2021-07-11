@@ -3,7 +3,7 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 import Colors from '@constants/Colors';
 
 // screens
-import WalletStack from '@navigations/WalletStack';
+import WalletScreen from '@screens/MainScreens/TransactionScreens/WalletScreen';
 import InvestmentsScreen from '@screens/MainScreens/TransactionScreens/InvestmentsScreen';
 import ReferralsScreen from '@screens/MainScreens/TransactionScreens/ReferralsScreen';
 
@@ -30,7 +30,7 @@ export default function () {
           fontSize: 16,
         },
       }}>
-      <Tab.Screen name="Wallet" component={WalletStack} />
+      <Tab.Screen name="Wallet" component={WalletScreen} />
       <Tab.Screen name="Investments" component={InvestmentsScreen} />
       <Tab.Screen name="Referrals" component={ReferralsScreen} />
     </Tab.Navigator>

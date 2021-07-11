@@ -1,19 +1,19 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-// Wallet Stack Screens
-import WalletScreen from '@screens/MainScreens/TransactionScreens/WalletScreen';
-import DepositFundScreen from '@screens/MainScreens/TransactionScreens/WalletStackScreens/DepositFundScreen';
+// Screens
+import TransactionsScreen from '@screens/MainScreens/TransactionScreens/TransactionsScreen';
+import DepositFundScreen from '@screens/MainScreens/TransactionScreens/DepositFundScreen';
 
 const Stack = createStackNavigator();
 
-export default function WalletStack() {
+export default function TransactionStack() {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="Wallet" component={WalletScreen} />
+      <Stack.Screen name="Trnx" component={TransactionsScreen} />
       <Stack.Screen name="DepositFund" component={DepositFundScreen} />
     </Stack.Navigator>
   );

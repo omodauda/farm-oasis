@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import Colors from '@constants/Colors';
 
-export default function WalletScreen() {
+export default function WalletScreen({navigation}) {
   return (
     <ScrollView style={styles.screen}>
       <View style={styles.balance}>
@@ -27,7 +27,9 @@ export default function WalletScreen() {
           transfer to a unique account number.
         </Text>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.depositButton}>
+          <TouchableOpacity
+            style={styles.depositButton}
+            onPress={() => navigation.navigate('DepositFund')}>
             <Text style={styles.buttonText}>Deposit Funds</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.withdrawButton}>
