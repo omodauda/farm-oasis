@@ -1,6 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import FocusAwareStatusBar from '@navigations/FocusAwareStatusBar';
+import {View, StyleSheet, StatusBar} from 'react-native';
 import TopTabNavigator from '@navigations/TopTabNavigators/ExploreTopTabNavigator';
 
 import CustomHeader from '@components/CustomHeader';
@@ -8,7 +7,7 @@ import CustomHeader from '@components/CustomHeader';
 export default function ExploreFarmsScreen({navigation}) {
   return (
     <View style={styles.screen}>
-      <FocusAwareStatusBar backgroundColor="white" barStyle="dark-content" />
+      <StatusBar backgroundColor="white" barStyle="dark-content" />
       <CustomHeader
         navigation={navigation}
         style={styles.header}

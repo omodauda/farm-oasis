@@ -6,8 +6,8 @@ import {
   ScrollView,
   StyleSheet,
   TouchableWithoutFeedback,
+  StatusBar,
 } from 'react-native';
-import FocusAwareStatusBar from '@navigations/FocusAwareStatusBar';
 import CustomHeader from '@components/CustomHeader';
 import Colors from '@constants/Colors';
 import {FARMS} from '@data/index';
@@ -17,7 +17,7 @@ export default function FarmDetailsScreen({navigation, route}) {
   const farm = FARMS.find(f => f.id === farmId);
   return (
     <View style={styles.screen}>
-      <FocusAwareStatusBar backgroundColor="white" barStyle="dark-content" />
+      <StatusBar backgroundColor="white" barStyle="dark-content" />
       <CustomHeader
         navigation={navigation}
         style={styles.header}
