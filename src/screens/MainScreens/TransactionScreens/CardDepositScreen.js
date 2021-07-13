@@ -6,13 +6,19 @@ import {
   StyleSheet,
   StatusBar,
   ScrollView,
-  TextInput,
   TouchableOpacity,
 } from 'react-native';
 import CustomHeader from '@components/CustomHeader';
+import {Formik, Field} from 'formik';
+import CustomTextInput from '@components/CustomTextInput';
 import Colors from '@constants/Colors';
 
+import {cardDepositValidationSchema} from '@validations/CardDepositValidation';
+
 export default function CardDepositScreen({navigation}) {
+  const depositHandler = ({cardName, cardNumber, expiryDate, cvv, amount}) => {
+    console.log({cardName, cardNumber, expiryDate, cvv, amount});
+  };
   return (
     <View style={styles.screen}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
@@ -27,59 +33,106 @@ export default function CardDepositScreen({navigation}) {
 
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
         <View style={styles.cardInfo}>
-          <View style={styles.section}>
-            <Text style={styles.label}>Name on card</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Kayode Bamidele"
-              placeholderTextColor="grey"
-            />
-          </View>
-          <View style={styles.section}>
-            <Text style={styles.label}>Card Number</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="1234 1234 1234 1234"
-              placeholderTextColor="grey"
-            />
-          </View>
-          <View style={styles.section}>
-            <Text style={styles.label}>Expiry Date</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="05/21"
-              placeholderTextColor="grey"
-            />
-          </View>
-          <View style={styles.section}>
-            <Text style={styles.label}>CVV</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="123"
-              placeholderTextColor="grey"
-            />
-          </View>
-          <View style={styles.section}>
-            <Text style={styles.label}>Amount</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="10000"
-              placeholderTextColor="grey"
-            />
-          </View>
-        </View>
+          <Formik
+            validationSchema={cardDepositValidationSchema}
+            initialValues={{
+              cardName: '',
+              cardNumber: '',
+              expiryDate: '',
+              cvv: '',
+              amount: '',
+            }}
+            onSubmit={values => depositHandler(values)}>
+            {({handleSubmit, isValid, errors}) => (
+              <>
+                <View style={styles.section}>
+                  <Text style={styles.label}>Name on card</Text>
+                  <Field
+                    component={CustomTextInput}
+                    name="cardName"
+                    keyboardType="default"
+                    placeholder="Kayode Bamidele"
+                    placeholderTextColor="grey"
+                    style={styles.input}
+                  />
+                  {errors.cardName && (
+                    <Text style={styles.errorText}>{errors.cardName}</Text>
+                  )}
+                </View>
+                <View style={styles.section}>
+                  <Text style={styles.label}>Card Number</Text>
+                  <Field
+                    component={CustomTextInput}
+                    name="cardNumber"
+                    keyboardType="numeric"
+                    placeholder="1234 1234 1234 1234"
+                    placeholderTextColor="grey"
+                    style={styles.input}
+                  />
+                  {errors.cardNumber && (
+                    <Text style={styles.errorText}>{errors.cardNumber}</Text>
+                  )}
+                </View>
+                <View style={styles.section}>
+                  <Text style={styles.label}>Expiry Date</Text>
+                  <Field
+                    component={CustomTextInput}
+                    name="expiryDate"
+                    keyboardType="numeric"
+                    placeholder="05/21"
+                    placeholderTextColor="grey"
+                    style={styles.input}
+                  />
+                  {errors.expiryDate && (
+                    <Text style={styles.errorText}>{errors.expiryDate}</Text>
+                  )}
+                </View>
+                <View style={styles.section}>
+                  <Text style={styles.label}>CVV</Text>
+                  <Field
+                    component={CustomTextInput}
+                    name="cvv"
+                    keyboardType="numeric"
+                    placeholder="123"
+                    placeholderTextColor="grey"
+                    style={styles.input}
+                  />
+                  {errors.cvv && (
+                    <Text style={styles.errorText}>{errors.cvv}</Text>
+                  )}
+                </View>
+                <View style={styles.section}>
+                  <Text style={styles.label}>Amount</Text>
+                  <Field
+                    component={CustomTextInput}
+                    name="amount"
+                    keyboardType="numeric"
+                    placeholder="#10000"
+                    placeholderTextColor="grey"
+                    style={styles.input}
+                  />
+                  {errors.amount && (
+                    <Text style={styles.errorText}>{errors.amount}</Text>
+                  )}
+                </View>
 
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={{...styles.button, backgroundColor: '#C4C4C4'}}
-            onPress={() => navigation.goBack()}>
-            <Text style={styles.buttonText}>Cancel</Text>
-          </TouchableOpacity>
+                <View style={styles.buttonContainer}>
+                  <TouchableOpacity
+                    style={{...styles.button, backgroundColor: '#C4C4C4'}}
+                    onPress={() => navigation.goBack()}>
+                    <Text style={styles.buttonText}>Cancel</Text>
+                  </TouchableOpacity>
 
-          <TouchableOpacity
-            style={{...styles.button, backgroundColor: Colors.primary}}>
-            <Text style={styles.buttonText}>Confirm</Text>
-          </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={handleSubmit}
+                    disabled={!isValid}
+                    style={{...styles.button, backgroundColor: Colors.primary}}>
+                    <Text style={styles.buttonText}>Confirm</Text>
+                  </TouchableOpacity>
+                </View>
+              </>
+            )}
+          </Formik>
         </View>
       </ScrollView>
     </View>
@@ -90,7 +143,7 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: 'white',
-    paddingVertical: 45,
+    paddingTop: 45,
     paddingHorizontal: 24,
   },
   header: {
@@ -133,6 +186,10 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: 14,
     color: Colors.text,
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 16,
   },
   buttonContainer: {
     flexDirection: 'row',
