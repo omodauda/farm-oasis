@@ -1,20 +1,23 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import {DrawerActions} from '@react-navigation/native';
 import Colors from '@constants/Colors';
 
 // Screens
 import HomeStack from '@navigations/HomeStack';
-import TransactionsStack from '@navigations/TransactionStack';
 import ProfileDrawerNaviagtor from '@navigations/ProfileDrawerNavigation';
+import TransactionStack from '@navigations/TransactionStack';
+import BankTransferScreen from '@screens/MainScreens/TransactionScreens/BankTransferScreen';
 
 // tab bar icons
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
-export default function MainNavigator() {
+function TabNavigator() {
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -44,7 +47,7 @@ export default function MainNavigator() {
       />
       <Tab.Screen
         name="Transactions"
-        component={TransactionsStack}
+        component={TransactionStack}
         options={{
           tabBarIcon: ({focused, size, color}) => (
             <MaterialCommunityIcons name="note-text" color={color} size={42} />
@@ -66,5 +69,17 @@ export default function MainNavigator() {
         }}
       />
     </Tab.Navigator>
+  );
+}
+
+export default function MainNavigator() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Stack.Screen name="Home" component={TabNavigator} />
+      <Stack.Screen name="BankTransfer" component={BankTransferScreen} />
+    </Stack.Navigator>
   );
 }
