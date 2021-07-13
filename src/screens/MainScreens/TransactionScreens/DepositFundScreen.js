@@ -34,7 +34,12 @@ export default function DepositFundScreen({navigation}) {
           <Card
             title="Fund wallet via card"
             text="Fund your wallet directly with your debit card">
-            <Octicons name="plus" size={50} color="white" />
+            <Octicons
+              name="plus"
+              size={50}
+              color="white"
+              onPress={() => navigation.navigate('CardDeposit')}
+            />
           </Card>
         </View>
       </View>
