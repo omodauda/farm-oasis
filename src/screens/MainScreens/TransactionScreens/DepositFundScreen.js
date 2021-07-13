@@ -22,7 +22,12 @@ export default function DepositFundScreen({navigation}) {
             title="Fund wallet via bank transfer"
             text="Fund your wallet by simply making a bank or online transfer to a
             unique account number.">
-            <Ionicons name="chevron-forward-sharp" size={50} color="black" />
+            <Ionicons
+              name="chevron-forward-sharp"
+              size={50}
+              color="black"
+              onPress={() => navigation.navigate('BankTransfer')}
+            />
           </Card>
         </View>
         <View style={styles.cardView}>
