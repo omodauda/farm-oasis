@@ -37,7 +37,7 @@ export default function (props) {
               )}
               label="Settings"
               labelStyle={styles.labelStyle}
-              // onPress={() => props.navigation.navigate('Settings')}
+              onPress={() => props.navigation.navigate('Settings')}
             />
           </View>
           <View style={styles.drawerSection}>
@@ -45,6 +45,7 @@ export default function (props) {
               icon={({color, size}) => <AntDesign name="user" size={32} />}
               label="Personal Data"
               labelStyle={styles.labelStyle}
+              onPress={() => props.navigation.navigate('PersonalData')}
             />
           </View>
           <View style={styles.drawerSection}>
@@ -54,6 +55,7 @@ export default function (props) {
               )}
               label="Change Password"
               labelStyle={styles.labelStyle}
+              onPress={() => props.navigation.navigate('ChangePassword')}
             />
           </View>
           <View style={styles.drawerSection}>
@@ -63,6 +65,7 @@ export default function (props) {
               )}
               label="About FarmOasis"
               labelStyle={styles.labelStyle}
+              onPress={() => props.navigation.navigate('About')}
             />
           </View>
         </View>
