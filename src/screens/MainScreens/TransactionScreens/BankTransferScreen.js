@@ -10,7 +10,10 @@ import {
 import CustomHeader from '@components/CustomHeader';
 import Colors from '@constants/Colors';
 
+import {ACCOUNTS} from '@data/index';
+
 export default function BankTransferScreen({navigation}) {
+  const {farmOasis: companyAccount} = ACCOUNTS;
   return (
     <View style={styles.screen}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
@@ -29,19 +32,23 @@ export default function BankTransferScreen({navigation}) {
           <View style={styles.section}>
             <Text style={styles.label}>Bank</Text>
             <View style={styles.dummyInput}>
-              <Text style={styles.placeholder}>Zenith Bank</Text>
+              <Text style={styles.placeholder}>{companyAccount.bank}</Text>
             </View>
           </View>
           <View style={styles.section}>
             <Text style={styles.label}>Account Number</Text>
             <View style={styles.dummyInput}>
-              <Text style={styles.placeholder}>2100115958</Text>
+              <Text style={styles.placeholder}>
+                {companyAccount.accountNumber}
+              </Text>
             </View>
           </View>
           <View style={styles.section}>
             <Text style={styles.label}>Account Name</Text>
             <View style={styles.dummyInput}>
-              <Text style={styles.placeholder}>Farm Oasis</Text>
+              <Text style={styles.placeholder}>
+                {companyAccount.accountName}
+              </Text>
             </View>
           </View>
         </View>
