@@ -128,3 +128,16 @@ export const FARMS = [
     sweet, full of antioxidants, and may help fight several diseases.',
   },
 ];
+
+export const ACCOUNTS = {
+  farmOasis: {
+    bank: 'Zenith bank',
+    accountNumber: '2100115958',
+    accountName: 'Farm Oasis',
+  },
+  user: {
+    bank: 'Zenith bank',
+    accountNumber: '2100115958',
+    accountName: 'Kayode Bamidele',
+  },
+};
