@@ -32,7 +32,9 @@ export default function WalletScreen({navigation}) {
             onPress={() => navigation.navigate('DepositFund')}>
             <Text style={styles.buttonText}>Deposit Funds</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.withdrawButton}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('WithdrawFund')}
+            style={styles.withdrawButton}>
             <Text style={styles.buttonText}>Withdraw Funds</Text>
           </TouchableOpacity>
         </View>

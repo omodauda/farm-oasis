@@ -10,6 +10,7 @@ import ProfileDrawerNaviagtor from '@navigations/ProfileDrawerNavigation';
 import TransactionStack from '@navigations/TransactionStack';
 import BankTransferScreen from '@screens/MainScreens/TransactionScreens/BankTransferScreen';
 import CardDepositScreen from '@screens/MainScreens/TransactionScreens/CardDepositScreen';
+import WithdrawFundScreen from '@screens/MainScreens/TransactionScreens/WithdrawFundScreen';
 
 // tab bar icons
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -82,6 +83,7 @@ export default function MainNavigator() {
       <Stack.Screen name="Home" component={TabNavigator} />
       <Stack.Screen name="BankTransfer" component={BankTransferScreen} />
       <Stack.Screen name="CardDeposit" component={CardDepositScreen} />
+      <Stack.Screen name="WithdrawFund" component={WithdrawFundScreen} />
     </Stack.Navigator>
   );
 }
