@@ -139,5 +139,15 @@ export const ACCOUNTS = {
     bank: 'Zenith bank',
     accountNumber: '2100115958',
     accountName: 'Kayode Bamidele',
+    bvn: '2100225912',
   },
+};
+
+export const USER = {
+  firstName: 'Kayode',
+  lastName: 'Bamidele',
+  phone: '08171878521',
+  address: '28, Sodipe Street, Ago-Oko, Abeokuta',
+  dob: '12/4/1984',
+  gender: 'Male',
 };
