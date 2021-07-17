@@ -34,7 +34,9 @@ export default function PersonalDataScreen({navigation}) {
             <Text style={styles.placeholder}>{phone}</Text>
           </View>
           <View style={styles.dummyInput}>
-            <Text style={styles.placeholder}>{address}</Text>
+            <Text style={styles.placeholder} numberOfLines={1}>
+              {address}
+            </Text>
           </View>
           <View style={styles.dummyInput}>
             <Text style={styles.placeholder}>{dob}</Text>

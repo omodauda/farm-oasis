@@ -139,7 +139,7 @@ export const ACCOUNTS = {
     bank: 'Zenith bank',
     accountNumber: '2100115958',
     accountName: 'Kayode Bamidele',
-    bvn: '2100225912',
+    bvn: '2100225912325828',
   },
 };
 
