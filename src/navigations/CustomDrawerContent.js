@@ -30,7 +30,7 @@ export default function (props) {
             <Text style={styles.username}>{referralCode}</Text>
           </View>
 
-          <View style={styles.drawerSection}>
+          {/* <View style={styles.drawerSection}>
             <DrawerItem
               icon={({color, size}) => (
                 <Ionicons name="settings-outline" size={32} />
@@ -39,7 +39,7 @@ export default function (props) {
               labelStyle={styles.labelStyle}
               onPress={() => props.navigation.navigate('Settings')}
             />
-          </View>
+          </View> */}
           <View style={styles.drawerSection}>
             <DrawerItem
               icon={({color, size}) => <AntDesign name="user" size={32} />}
