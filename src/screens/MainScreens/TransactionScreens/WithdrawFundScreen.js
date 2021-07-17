@@ -53,7 +53,12 @@ export default function WithdrawFundScreen({navigation}) {
           </View>
           <View style={styles.section}>
             <Text style={styles.label}>Amount</Text>
-            <TextInput style={styles.dummyInput} placeholder="#10000" />
+            <TextInput
+              style={[{...styles.dummyInput, ...styles.placeholder}]}
+              placeholder="#10000"
+              placeholderTextColor="grey"
+              keyboardType="numeric"
+            />
           </View>
         </View>
 
