@@ -1,15 +1,13 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import FocusAwareStatusBar from '@navigations/FocusAwareStatusBar';
 import CustomHeader from '@components/CustomHeader';
 import Colors from '@constants/Colors';
-import {USER, ACCOUNTS} from '@data/index';
 
 export default function PersonalDataScreen({navigation}) {
-  const {firstName, lastName, phone, address, dob, gender} = USER;
-  const {
-    user: {accountName, accountNumber, bvn},
-  } = ACCOUNTS;
+  const user = useSelector(state => state.auth.user);
+  const {firstName, lastName, phone} = user;
   return (
     <View style={styles.screen}>
       <FocusAwareStatusBar
@@ -35,32 +33,32 @@ export default function PersonalDataScreen({navigation}) {
           </View>
           <View style={styles.dummyInput}>
             <Text style={styles.placeholder} numberOfLines={1}>
-              {address}
+              Address
             </Text>
           </View>
           <View style={styles.dummyInput}>
-            <Text style={styles.placeholder}>{dob}</Text>
+            <Text style={styles.placeholder}>D.O.B</Text>
           </View>
           <View style={styles.dummyInput}>
-            <Text style={styles.placeholder}>{gender}</Text>
+            <Text style={styles.placeholder}>Gender</Text>
           </View>
         </View>
         <View style={styles.section}>
           <Text style={styles.title}>Bank Details</Text>
           <View style={styles.dummyInput}>
-            <Text style={styles.placeholder}>{accountName}</Text>
+            <Text style={styles.placeholder}>{`${firstName} ${lastName}`}</Text>
           </View>
           <View style={styles.dummyInput}>
-            <Text style={styles.placeholder}>{accountNumber}</Text>
+            <Text style={styles.placeholder}>************</Text>
           </View>
         </View>
         <View style={styles.lastSection}>
           <Text style={styles.title}>BVN Details</Text>
           <View style={styles.dummyInput}>
-            <Text style={styles.placeholder}>{accountName}</Text>
+            <Text style={styles.placeholder}>{`${firstName} ${lastName}`}</Text>
           </View>
           <View style={styles.dummyInput}>
-            <Text style={styles.placeholder}>{bvn}</Text>
+            <Text style={styles.placeholder}>***************</Text>
           </View>
         </View>
       </ScrollView>

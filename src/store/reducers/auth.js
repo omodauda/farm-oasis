@@ -9,6 +9,7 @@ const initialState = {
     lastName: null,
     email: null,
     referralCode: null,
+    phone: null,
   },
 };
 
@@ -24,6 +25,7 @@ export default function authReducer(state = initialState, action) {
         referralCode,
         isAdmin,
         isVerified,
+        phone,
       } = action;
       return {
         user: {
@@ -35,6 +37,7 @@ export default function authReducer(state = initialState, action) {
           lastName,
           email,
           referralCode,
+          phone,
         },
       };
     case VERIFY_USER:

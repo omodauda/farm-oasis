@@ -13,6 +13,7 @@ export const authenticate = (
   first_name,
   last_name,
   referralCode,
+  phone_number,
 ) => {
   return {
     type: AUTHENTICATE,
@@ -24,6 +25,7 @@ export const authenticate = (
     firstName: first_name,
     lastName: last_name,
     referralCode,
+    phone: phone_number,
   };
 };
 
@@ -57,6 +59,7 @@ export const signup = (firstName, lastName, email, phone, password) => {
       firstName: first_name,
       lastName: last_name,
       referralCode,
+      phone: phone_number,
     } = resData.data;
     dispatch(
       authenticate(
@@ -68,6 +71,7 @@ export const signup = (firstName, lastName, email, phone, password) => {
         first_name,
         last_name,
         referralCode,
+        phone_number,
       ),
     );
     saveTokensToStorage(token, refreshToken);
@@ -145,6 +149,7 @@ export const login = (email, password) => {
       firstName: first_name,
       lastName: last_name,
       referralCode,
+      phone: phone_number,
     } = resData.data;
     dispatch(
       authenticate(
@@ -156,6 +161,7 @@ export const login = (email, password) => {
         first_name,
         last_name,
         referralCode,
+        phone_number,
       ),
     );
     saveTokensToStorage(token, refreshToken);
@@ -204,6 +210,7 @@ export const getUser = (token, refreshToken) => {
       firstName: first_name,
       lastName: last_name,
       referralCode,
+      phone: phone_number,
     } = resData.data;
     dispatch(
       authenticate(
@@ -215,6 +222,7 @@ export const getUser = (token, refreshToken) => {
         first_name,
         last_name,
         referralCode,
+        phone_number,
       ),
     );
   };
