@@ -16,8 +16,14 @@ export default function WalletScreen({navigation}) {
           Current Balance: <Text style={styles.amount}>₦ 0</Text>
         </Text>
         <View style={styles.linkContainer}>
-          <Text style={styles.link}>Fund A Farm</Text>
-          <Text style={styles.link}>Be Updated</Text>
+          <Text
+            onPress={() =>
+              navigation.navigate('Home', {screen: 'ExploreFarms'})
+            }
+            style={styles.link}>
+            Fund A Farm
+          </Text>
+          {/* <Text style={styles.link}>Be Updated</Text> */}
         </View>
       </View>
       <View style={styles.absoluteView}>
