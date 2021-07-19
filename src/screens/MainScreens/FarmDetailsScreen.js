@@ -16,7 +16,6 @@ export default function FarmDetailsScreen({navigation, route}) {
   const {farmId} = route.params;
   const farm = FARMS.find(f => f.id === farmId);
   const isFarmOpen = farm.status === 'open';
-  console.log(isFarmOpen);
   return (
     <View style={styles.screen}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
