@@ -5,7 +5,7 @@ import {
   Image,
   ScrollView,
   StyleSheet,
-  TouchableWithoutFeedback,
+  TouchableOpacity,
   StatusBar,
 } from 'react-native';
 import CustomHeader from '@components/CustomHeader';
@@ -15,6 +15,8 @@ import {FARMS} from '@data/index';
 export default function FarmDetailsScreen({navigation, route}) {
   const {farmId} = route.params;
   const farm = FARMS.find(f => f.id === farmId);
+  const isFarmOpen = farm.status === 'open';
+  console.log(isFarmOpen);
   return (
     <View style={styles.screen}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
@@ -43,17 +45,25 @@ export default function FarmDetailsScreen({navigation, route}) {
             <Text style={styles.info}>{farm.duration}</Text>
           </View>
           <View style={styles.section}>
+            <Text style={styles.label}>Status</Text>
+            <Text style={styles.info}>{farm.status}</Text>
+          </View>
+          <View style={styles.section}>
             <Text style={styles.label}>Return on investment</Text>
             <Text style={styles.primaryText}>{farm.roi}</Text>
           </View>
 
           <View style={styles.footer}>
             <Text style={styles.primaryText}>SHARE WITH A FRIEND</Text>
-            <TouchableWithoutFeedback>
-              <View style={styles.button}>
-                <Text style={styles.primaryText}>FUND</Text>
-              </View>
-            </TouchableWithoutFeedback>
+            <TouchableOpacity
+              // eslint-disable-next-line react-native/no-inline-styles
+              style={{
+                ...styles.button,
+                backgroundColor: isFarmOpen ? Colors.primary : 'grey',
+              }}
+              disabled={!isFarmOpen}>
+              <Text style={styles.buttonText}>FUND</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -138,8 +148,14 @@ const styles = StyleSheet.create({
   button: {
     paddingVertical: 7,
     paddingHorizontal: 15,
-    backgroundColor: 'white',
     elevation: 5,
     shadowColor: 'rgba(17, 17, 17, 0.25)',
+    borderRadius: 5,
+  },
+  buttonText: {
+    fontFamily: 'Montserrat-Medium',
+    fontWeight: '500',
+    fontSize: 14,
+    color: 'white',
   },
 });
