@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 import {API_URL} from '@constants/url';
 
 export const AUTHENTICATE = 'AUTHENTICATE';
@@ -74,7 +74,7 @@ export const signup = (firstName, lastName, email, phone, password) => {
         phone_number,
       ),
     );
-    saveTokensToStorage(token, refreshToken);
+    // saveTokensToStorage(token, refreshToken);
   };
 };
 
@@ -164,7 +164,7 @@ export const login = (email, password) => {
         phone_number,
       ),
     );
-    saveTokensToStorage(token, refreshToken);
+    // saveTokensToStorage(token, refreshToken);
   };
 };
 
@@ -187,46 +187,46 @@ export const forgetPassword = email => {
   };
 };
 
-export const getUser = (token, refreshToken) => {
-  return async dispatch => {
-    const response = await fetch(`${API_URL}/user`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        // eslint-disable-next-line prettier/prettier
-        'Authorization': `Bearer ${token}`,
-      },
-    });
+// export const getUser = (token, refreshToken) => {
+//   return async dispatch => {
+//     const response = await fetch(`${API_URL}/user`, {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         // eslint-disable-next-line prettier/prettier
+//         'Authorization': `Bearer ${token}`,
+//       },
+//     });
 
-    if (!response.ok) {
-      const resData = await response.json();
-      throw new Error(resData.error);
-    }
-    const resData = await response.json();
-    const {
-      isAdmin,
-      isVerified,
-      email: user_email,
-      firstName: first_name,
-      lastName: last_name,
-      referralCode,
-      phone: phone_number,
-    } = resData.data;
-    dispatch(
-      authenticate(
-        token,
-        refreshToken,
-        isAdmin,
-        isVerified,
-        user_email,
-        first_name,
-        last_name,
-        referralCode,
-        phone_number,
-      ),
-    );
-  };
-};
+//     if (!response.ok) {
+//       const resData = await response.json();
+//       throw new Error(resData.error);
+//     }
+//     const resData = await response.json();
+//     const {
+//       isAdmin,
+//       isVerified,
+//       email: user_email,
+//       firstName: first_name,
+//       lastName: last_name,
+//       referralCode,
+//       phone: phone_number,
+//     } = resData.data;
+//     dispatch(
+//       authenticate(
+//         token,
+//         refreshToken,
+//         isAdmin,
+//         isVerified,
+//         user_email,
+//         first_name,
+//         last_name,
+//         referralCode,
+//         phone_number,
+//       ),
+//     );
+//   };
+// };
 
 export const resetpassword = (email, resetToken, newPassword) => {
   return async dispatch => {
@@ -249,12 +249,12 @@ export const resetpassword = (email, resetToken, newPassword) => {
   };
 };
 
-const saveTokensToStorage = (accessToken, refreshToken) => {
-  AsyncStorage.setItem(
-    'tokens',
-    JSON.stringify({
-      accessToken,
-      refreshToken,
-    }),
-  );
-};
+// const saveTokensToStorage = (accessToken, refreshToken) => {
+//   AsyncStorage.setItem(
+//     'tokens',
+//     JSON.stringify({
+//       accessToken,
+//       refreshToken,
+//     }),
+//   );
+// };

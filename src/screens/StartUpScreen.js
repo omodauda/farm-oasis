@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   View,
   ImageBackground,
@@ -8,25 +8,30 @@ import {
   StyleSheet,
   StatusBar,
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 import Colors from '@constants/Colors';
 
-import {getUser} from '@store/actions/auth';
+// import {getUser} from '@store/actions/auth';
 
 export default function StartUpScreen({navigation}) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const user = useSelector(state => state.auth.user);
 
   useEffect(() => {
     const getUserData = async () => {
       setTimeout(async () => {
-        const storage = await AsyncStorage.getItem('tokens');
-        if (!storage) {
+        // const storage = await AsyncStorage.getItem('tokens');
+        // if (!storage) {
+        //   navigation.navigate('Auth');
+        //   return;
+        // }
+        if (user.token === null && user.refreshToken === null) {
           navigation.navigate('Auth');
           return;
         }
-        const tokens = JSON.parse(storage);
-        const {accessToken, refreshToken} = tokens;
-        dispatch(getUser(accessToken, refreshToken));
+        // const tokens = JSON.parse(storage);
+        // const {accessToken, refreshToken} = tokens;
+        // dispatch(getUser(accessToken, refreshToken));
         navigation.navigate('Main');
       }, 3000);
     };
