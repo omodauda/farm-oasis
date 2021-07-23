@@ -10,12 +10,14 @@ import {
 } from 'react-native';
 import CustomHeader from '@components/CustomHeader';
 import Colors from '@constants/Colors';
+import Fund from '@components/Fund';
 import {FARMS} from '@data/index';
 
 export default function FarmDetailsScreen({navigation, route}) {
   const {farmId} = route.params;
   const farm = FARMS.find(f => f.id === farmId);
   const isFarmOpen = farm.status === 'open';
+
   return (
     <View style={styles.screen}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
@@ -54,15 +56,14 @@ export default function FarmDetailsScreen({navigation, route}) {
 
           <View style={styles.footer}>
             <Text style={styles.primaryText}>SHARE WITH A FRIEND</Text>
-            <TouchableOpacity
-              // eslint-disable-next-line react-native/no-inline-styles
-              style={{
-                ...styles.button,
-                backgroundColor: isFarmOpen ? Colors.primary : 'grey',
-              }}
-              disabled={!isFarmOpen}>
-              <Text style={styles.buttonText}>FUND</Text>
-            </TouchableOpacity>
+
+            {isFarmOpen ? (
+              <Fund amount={farm.amount} />
+            ) : (
+              <TouchableOpacity style={styles.button} disabled={!isFarmOpen}>
+                <Text style={styles.buttonText}>FUND</Text>
+              </TouchableOpacity>
+            )}
           </View>
         </View>
       </ScrollView>
@@ -145,11 +146,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    paddingVertical: 7,
+    borderRadius: 5,
     paddingHorizontal: 15,
+    paddingVertical: 7,
+    backgroundColor: 'grey',
     elevation: 5,
     shadowColor: 'rgba(17, 17, 17, 0.25)',
-    borderRadius: 5,
   },
   buttonText: {
     fontFamily: 'Montserrat-Medium',
