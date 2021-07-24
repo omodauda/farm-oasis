@@ -17,6 +17,10 @@ export default function HomeScreen({navigation}) {
   const user = useSelector(state => state.auth.user);
   const {firstName} = user;
 
+  const cycle = useSelector(
+    state => state.transactions.investments.onGoing,
+  ).length;
+
   useEffect(() => {
     navigation.addListener('beforeRemove', e => {
       e.preventDefault();
@@ -44,7 +48,7 @@ export default function HomeScreen({navigation}) {
           style={styles.headerIcon}
         />
       </View>
-      <Text style={styles.subHeaderText}>Farm cycles running: 0</Text>
+      <Text style={styles.subHeaderText}>Farm cycles running: {cycle}</Text>
       <Text style={styles.historyText}>Click here to view Farm History</Text>
 
       <FlatList
