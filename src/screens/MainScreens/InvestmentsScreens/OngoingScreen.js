@@ -1,4 +1,5 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import {
   View,
   Text,
@@ -6,20 +7,43 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
 import Colors from '@constants/Colors';
+import FarmItem from '@components/FarmItem';
+import {FARMS} from '@data/index';
 
-export default function OngoingScreen() {
+export default function OngoingScreen({navigation}) {
+  const onGoingInvestments = useSelector(
+    state => state.transactions.investments.onGoing,
+  );
   return (
-    <ScrollView style={styles.screen}>
-      <View style={styles.centeredView}>
-        <Image source={require('@assets/images/note.png')} />
-        <Text style={styles.text}>You have no investments yet</Text>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Fund A Farm</Text>
-        </TouchableOpacity>
-      </View>
-    </ScrollView>
+    <View style={styles.screen}>
+      {onGoingInvestments.length < 1 ? (
+        <ScrollView style={styles.emptyList}>
+          <View style={styles.centeredView}>
+            <Image source={require('@assets/images/note.png')} />
+            <Text style={styles.text}>You have no investments yet</Text>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate('ExploreFarms')}>
+              <Text style={styles.buttonText}>Fund A Farm</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      ) : (
+        <View style={styles.list}>
+          <FlatList
+            data={onGoingInvestments}
+            keyExtractor={item => item.farmId}
+            renderItem={({item}) => {
+              let farm = FARMS.find(f => f.id === item.farmId);
+              return <FarmItem item={farm} />;
+            }}
+          />
+        </View>
+      )}
+    </View>
   );
 }
 
@@ -27,6 +51,8 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: 'white',
+  },
+  emptyList: {
     paddingTop: 53,
     paddingBottom: 110,
   },
@@ -51,5 +77,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 18,
     color: Colors.primary,
+  },
+  list: {
+    paddingHorizontal: 24,
   },
 });
