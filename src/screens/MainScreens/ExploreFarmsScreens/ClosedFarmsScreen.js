@@ -1,31 +1,9 @@
 import React from 'react';
-import {View, FlatList, StyleSheet} from 'react-native';
-import FarmItem from '@components/FarmItem';
+import FarmList from '@components/FarmList';
 import {FARMS} from '@data/index';
 
 export default function ClosedFarmsScreen({navigation}) {
   const closedFarms = FARMS.filter(farm => farm.status === 'closed');
 
-  const handleClick = id => {
-    navigation.navigate('FarmDetails', {farmId: id});
-  };
-
-  return (
-    <View style={styles.screen}>
-      <FlatList
-        data={closedFarms}
-        keyExtractor={item => item.id}
-        renderItem={({item}) => (
-          <FarmItem item={item} onPress={() => handleClick(item.id)} />
-        )}
-      />
-    </View>
-  );
+  return <FarmList data={closedFarms} navigation={navigation} />;
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-});
