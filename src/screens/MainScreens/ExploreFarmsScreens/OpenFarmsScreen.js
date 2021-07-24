@@ -6,13 +6,17 @@ import FarmItem from '@components/FarmItem';
 export default function OpenFarmsScreen({navigation}) {
   const openFarms = FARMS.filter(farm => farm.status === 'open');
 
+  const handleClick = id => {
+    navigation.navigate('FarmDetails', {farmId: id});
+  };
+
   return (
     <View style={styles.screen}>
       <FlatList
         data={openFarms}
         keyExtractor={item => item.id}
         renderItem={({item}) => (
-          <FarmItem navigation={navigation} item={item} />
+          <FarmItem item={item} onPress={() => handleClick(item.id)} />
         )}
       />
     </View>

@@ -5,13 +5,18 @@ import {FARMS} from '@data/index';
 
 export default function ClosedFarmsScreen({navigation}) {
   const closedFarms = FARMS.filter(farm => farm.status === 'closed');
+
+  const handleClick = id => {
+    navigation.navigate('FarmDetails', {farmId: id});
+  };
+
   return (
     <View style={styles.screen}>
       <FlatList
         data={closedFarms}
         keyExtractor={item => item.id}
         renderItem={({item}) => (
-          <FarmItem navigation={navigation} item={item} />
+          <FarmItem item={item} onPress={() => handleClick(item.id)} />
         )}
       />
     </View>

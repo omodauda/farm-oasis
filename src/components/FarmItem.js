@@ -8,10 +8,9 @@ import {
 } from 'react-native';
 import Colors from '@constants/Colors';
 
-export default function FarmItem({navigation, item}) {
+export default function FarmItem({onPress, item}) {
   return (
-    <TouchableWithoutFeedback
-      onPress={() => navigation.navigate('FarmDetails', {farmId: item.id})}>
+    <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.farmItem}>
         <View style={styles.imageContainer}>
           <Image style={styles.image} source={item.image} />
