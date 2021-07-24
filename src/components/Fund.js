@@ -1,16 +1,19 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {View, StyleSheet} from 'react-native';
 import PaystackWebView from 'react-native-paystack-webview';
 import {paystackKey} from '@env';
 import Colors from '@constants/Colors';
 
-export default function Fund({amount}) {
+import {fundAFarm} from '@store/actions/transactions';
+
+export default function Fund({amount, farmId, purpose, navigation}) {
   const user = useSelector(state => state.auth.user);
   const {email, phone, firstName, lastName} = user;
   const payRef = () => {
     return Math.floor(Math.random() * 1000000000 + 1);
   };
+  const dispatch = useDispatch();
   return (
     <View style={styles.button}>
       <PaystackWebView
@@ -29,7 +32,10 @@ export default function Fund({amount}) {
         }}
         onSuccess={res => {
           // handle response here
-          console.log(res);
+          if (purpose === 'fundAFarm') {
+            dispatch(fundAFarm(farmId));
+            navigation.navigate('Transactions', {screen: 'Investments'});
+          }
         }}
         autoStart={false}
       />

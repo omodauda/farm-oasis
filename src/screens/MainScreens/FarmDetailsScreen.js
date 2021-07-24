@@ -58,7 +58,12 @@ export default function FarmDetailsScreen({navigation, route}) {
             <Text style={styles.primaryText}>SHARE WITH A FRIEND</Text>
 
             {isFarmOpen ? (
-              <Fund amount={farm.amount} />
+              <Fund
+                amount={farm.amount}
+                farmId={farmId}
+                purpose="fundAFarm"
+                navigation={navigation}
+              />
             ) : (
               <TouchableOpacity style={styles.button} disabled={!isFarmOpen}>
                 <Text style={styles.buttonText}>FUND</Text>

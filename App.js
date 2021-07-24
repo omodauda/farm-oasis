@@ -9,6 +9,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import AppNavigator from '@navigations/AppNavigator';
 
 import authReducer from '@store/reducers/auth';
+import transactionsReducer from '@store/reducers/transaction';
 
 const persistConfig = {
   key: 'root',
@@ -18,6 +19,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   auth: persistReducer(persistConfig, authReducer),
+  transactions: transactionsReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(reduxThunk));
