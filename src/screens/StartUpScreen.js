@@ -20,23 +20,16 @@ export default function StartUpScreen({navigation}) {
   useEffect(() => {
     const getUserData = async () => {
       setTimeout(async () => {
-        // const storage = await AsyncStorage.getItem('tokens');
-        // if (!storage) {
-        //   navigation.navigate('Auth');
-        //   return;
-        // }
         if (user.token === null && user.refreshToken === null) {
-          navigation.navigate('Auth');
-          return;
+          return navigation.navigate('Auth');
+        } else {
+          navigation.navigate('Main');
         }
-        // const tokens = JSON.parse(storage);
-        // const {accessToken, refreshToken} = tokens;
-        // dispatch(getUser(accessToken, refreshToken));
-        navigation.navigate('Main');
       }, 3000);
     };
     getUserData();
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigation]);
 
   return (
     <View style={styles.screen}>
