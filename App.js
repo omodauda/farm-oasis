@@ -14,12 +14,11 @@ import transactionsReducer from '@store/reducers/transaction';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['user'],
 };
 
 const rootReducer = combineReducers({
   auth: persistReducer(persistConfig, authReducer),
-  transactions: transactionsReducer,
+  transactions: persistReducer(persistConfig, transactionsReducer),
 });
 
 const store = createStore(rootReducer, applyMiddleware(reduxThunk));

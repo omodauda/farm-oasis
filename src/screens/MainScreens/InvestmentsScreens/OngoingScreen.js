@@ -35,7 +35,7 @@ export default function OngoingScreen({navigation}) {
         <View style={styles.list}>
           <FlatList
             data={onGoingInvestments}
-            keyExtractor={item => item.farmId}
+            keyExtractor={(item, index) => index}
             renderItem={({item}) => {
               let farm = FARMS.find(f => f.id === item.farmId);
               return <FarmItem item={farm} />;
