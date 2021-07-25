@@ -1,15 +1,19 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import Colors from '@constants/Colors';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+// import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import {logout} from '@store/actions/auth';
 
 export default function (props) {
   const user = useSelector(state => state.auth.user);
   const {firstName, lastName, referralCode} = user;
+
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.drawer}>
@@ -75,6 +79,10 @@ export default function (props) {
           icon={({color, size}) => <AntDesign name="logout" size={32} />}
           label="Log out"
           labelStyle={styles.labelStyle}
+          onPress={() => {
+            dispatch(logout());
+            props.navigation.navigate('Auth');
+          }}
         />
       </View>
     </View>

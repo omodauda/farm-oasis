@@ -3,6 +3,7 @@ import {API_URL} from '@constants/url';
 
 export const AUTHENTICATE = 'AUTHENTICATE';
 export const VERIFY_USER = 'VERIFY_USER';
+export const LOGOUT = 'LOGOUT';
 
 export const authenticate = (
   token,
@@ -246,6 +247,12 @@ export const resetpassword = (email, resetToken, newPassword) => {
       const resData = await response.json();
       throw new Error(resData.error);
     }
+  };
+};
+
+export const logout = () => {
+  return {
+    type: LOGOUT,
   };
 };
 

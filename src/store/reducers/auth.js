@@ -1,4 +1,4 @@
-import {AUTHENTICATE, VERIFY_USER} from '@store/actions/auth';
+import {AUTHENTICATE, VERIFY_USER, LOGOUT} from '@store/actions/auth';
 const initialState = {
   user: {
     token: null,
@@ -44,6 +44,8 @@ export default function authReducer(state = initialState, action) {
       return {
         user: {...state.user, isVerified: true},
       };
+    case LOGOUT:
+      return initialState;
     default:
       return state;
   }
