@@ -81,7 +81,7 @@ export default function (props) {
           labelStyle={styles.labelStyle}
           onPress={() => {
             dispatch(logout());
-            props.navigation.navigate('Auth');
+            props.navigation.navigate('Login');
           }}
         />
       </View>
