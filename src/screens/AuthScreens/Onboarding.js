@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
@@ -28,6 +28,12 @@ const data = [
 ];
 
 export default function Onboarding({navigation}) {
+  useEffect(() => {
+    navigation.addListener('beforeRemove', e => {
+      e.preventDefault();
+    });
+  });
+
   return (
     <View style={styles.screen}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
