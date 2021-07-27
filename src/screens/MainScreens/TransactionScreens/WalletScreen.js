@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: 'white',
-    paddingBottom: 90,
   },
   balance: {
     backgroundColor: Colors.primary,
@@ -94,6 +93,7 @@ const styles = StyleSheet.create({
     paddingTop: 35,
     position: 'relative',
     bottom: 20,
+    marginBottom: 90,
   },
   headerText: {
     fontFamily: 'Montserrat-SemiBold',
