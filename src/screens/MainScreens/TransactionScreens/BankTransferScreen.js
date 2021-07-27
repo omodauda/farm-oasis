@@ -27,7 +27,7 @@ export default function BankTransferScreen({navigation}) {
         to a unique account number.
       </Text>
 
-      <ScrollView style={styles.scroll}>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
         <View style={styles.bankInfo}>
           <View style={styles.section}>
             <Text style={styles.label}>Bank</Text>
@@ -53,10 +53,8 @@ export default function BankTransferScreen({navigation}) {
           </View>
         </View>
 
-        <TouchableOpacity>
-          <View style={styles.buttonContainer}>
-            <Text style={styles.buttonText}>Share</Text>
-          </View>
+        <TouchableOpacity style={styles.buttonContainer}>
+          <Text style={styles.buttonText}>Share</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
@@ -67,7 +65,7 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: 'white',
-    paddingVertical: 45,
+    paddingTop: 45,
     paddingHorizontal: 24,
   },
   header: {
@@ -117,6 +115,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
     paddingVertical: 17,
     borderRadius: 5,
+    marginBottom: 45,
   },
   buttonText: {
     fontFamily: 'Montserrat-Medium',
