@@ -23,14 +23,15 @@ function TabNavigator() {
   return (
     <Tab.Navigator
       tabBarOptions={{
+        showLabel: false,
         style: {
           height: 70,
           backgroundColor: '#E5E5E5',
         },
-        labelStyle: {
-          fontFamily: 'Montserrat-Medium',
-          fontSize: 20,
-        },
+        // labelStyle: {
+        //   fontFamily: 'Montserrat-Medium',
+        //   fontSize: 20,
+        // },
         activeTintColor: Colors.primary,
         inactiveTintColor: Colors.text,
       }}>
