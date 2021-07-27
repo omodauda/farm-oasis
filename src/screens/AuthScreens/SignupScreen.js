@@ -43,7 +43,7 @@ export default function SignupScreen({navigation}) {
   };
 
   return (
-    <ScrollView style={styles.screen}>
+    <ScrollView keyboardShouldPersistTaps="handled" style={styles.screen}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
       <Text style={styles.headerTitle}>Let's get to know you</Text>
       <Text style={styles.headerText}>Create an account and start earning</Text>
