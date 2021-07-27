@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {
   View,
   ImageBackground,
@@ -22,6 +22,8 @@ export default function StartUpScreen({navigation}) {
       setTimeout(async () => {
         if (user.token === null && user.refreshToken === null) {
           return navigation.navigate('Auth');
+        } else if (!user.isVerified) {
+          navigation.navigate('Auth', {screen: 'ConfirmEmail'});
         } else {
           navigation.navigate('Main');
         }
