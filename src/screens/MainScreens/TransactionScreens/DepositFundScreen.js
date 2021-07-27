@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, StatusBar} from 'react-native';
+import {View, StyleSheet, StatusBar, ScrollView} from 'react-native';
 import CustomHeader from '@components/CustomHeader';
 import Card from '@components/Card';
 import Colors from '@constants/Colors';
@@ -16,8 +16,11 @@ export default function DepositFundScreen({navigation}) {
         title="Deposit Funds"
       />
 
-      <View style={styles.centeredView}>
-        <View style={styles.cardView}>
+      <ScrollView
+        style={styles.centeredView}
+        showsVerticalScrollIndicator={false}>
+        {/* eslint-disable-next-line react-native/no-inline-styles*/}
+        <View style={{...styles.cardView, marginBottom: 31}}>
           <Card
             title="Fund wallet via bank transfer"
             text="Fund your wallet by simply making a bank or online transfer to a
@@ -30,7 +33,8 @@ export default function DepositFundScreen({navigation}) {
             />
           </Card>
         </View>
-        <View style={styles.cardView}>
+        {/* eslint-disable-next-line react-native/no-inline-styles*/}
+        <View style={{...styles.cardView, marginBottom: 59}}>
           <Card
             title="Fund wallet via card"
             text="Fund your wallet directly with your debit card">
@@ -42,7 +46,7 @@ export default function DepositFundScreen({navigation}) {
             />
           </Card>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -65,8 +69,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     bottom: 150,
     paddingHorizontal: 24,
-  },
-  cardView: {
-    marginBottom: 31,
+    marginBottom: -150,
   },
 });
