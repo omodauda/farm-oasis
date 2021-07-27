@@ -1,11 +1,14 @@
 import React, {useRef, useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Dimensions} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import CarouselItem, {
   SLIDER_WIDTH,
   ITEM_WIDTH,
 } from '@components/Carousel/CarouselItem';
 import Colors from '@constants/Colors';
+
+const {height} = Dimensions.get('window');
+const HEIGHT = height * 0.7;
 
 export default function Slider({data}) {
   const isCarousel = useRef(null);
@@ -42,8 +45,8 @@ export default function Slider({data}) {
 
 const styles = StyleSheet.create({
   carousel: {
-    marginTop: '10%',
-    height: '65%',
+    paddingTop: '8%',
+    height: HEIGHT,
   },
   paginationDots: {
     width: 10,

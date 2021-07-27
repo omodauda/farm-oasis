@@ -4,6 +4,8 @@ import Colors from '@constants/Colors';
 
 export const SLIDER_WIDTH = Dimensions.get('window').width;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.75);
+const {height} = Dimensions.get('window');
+const IMAGE_SIZE = height * 0.3;
 
 export default function CarouselItem({item, index}) {
   return (
@@ -25,16 +27,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageContainer: {
-    width: 258,
-    height: 258,
-    borderRadius: 129,
+    width: IMAGE_SIZE,
+    height: IMAGE_SIZE,
+    borderRadius: IMAGE_SIZE / 2,
     backgroundColor: Colors.secondary,
     overflow: 'hidden',
     justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 5,
   },
   image: {
-    width: '100%',
+    width: '70%',
   },
   title: {
     color: Colors.primary,
