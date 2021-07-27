@@ -54,7 +54,7 @@ export default function ResetPasswordScreen({navigation, route}) {
   });
 
   return (
-    <ScrollView style={styles.screen}>
+    <ScrollView keyboardShouldPersistTaps="handled" style={styles.screen}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
       <View style={styles.imgContainer}>
         <Image

@@ -51,7 +51,7 @@ export default function ConfirmEmailScreen({navigation}) {
   });
 
   return (
-    <ScrollView style={styles.screen}>
+    <ScrollView keyboardShouldPersistTaps="handled" style={styles.screen}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
       <View style={styles.centeredView}>
         <View style={styles.imgContainer}>
@@ -116,7 +116,7 @@ export default function ConfirmEmailScreen({navigation}) {
 
 const styles = StyleSheet.create({
   screen: {
-    paddingVertical: 76,
+    paddingTop: 76,
     paddingHorizontal: 20,
     backgroundColor: 'white',
   },
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat-Medium',
   },
   buttonContainer: {
-    marginBottom: 35,
+    marginBottom: 120,
   },
   button: {
     backgroundColor: Colors.primary,
