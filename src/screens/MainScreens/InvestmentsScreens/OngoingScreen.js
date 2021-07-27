@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
   },
   emptyList: {
     paddingTop: 53,
-    paddingBottom: 110,
   },
   centeredView: {
     alignItems: 'center',
@@ -71,6 +70,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.text,
     paddingVertical: 15,
     paddingHorizontal: 15,
+    marginBottom: 110,
   },
   buttonText: {
     fontFamily: 'Montserrat-Bold',
