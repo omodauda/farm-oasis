@@ -31,7 +31,10 @@ export default function CardDepositScreen({navigation}) {
         Fund your wallet directly with your debit card
       </Text>
 
-      <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.scroll}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled">
         <View style={styles.cardInfo}>
           <Formik
             validationSchema={cardDepositValidationSchema}
