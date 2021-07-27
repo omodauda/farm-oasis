@@ -35,7 +35,7 @@ export default function LoginScreen({navigation}) {
     setIsLoading(false);
   };
   return (
-    <ScrollView style={styles.screen}>
+    <ScrollView keyboardShouldPersistTaps="handled" style={styles.screen}>
       <StatusBar barStyle="dark-content" backgroundColor={Colors.primary} />
       <View style={styles.intro}>
         <Text style={styles.introTitle}>Welcome back</Text>
@@ -132,7 +132,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
     paddingHorizontal: 20,
     paddingTop: 60,
-    paddingBottom: 174,
   },
   intro: {
     marginBottom: 69,
@@ -213,6 +212,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat-Regular',
     color: 'white',
     textAlign: 'center',
+    marginBottom: 174,
   },
   signupLink: {
     fontWeight: '600',
