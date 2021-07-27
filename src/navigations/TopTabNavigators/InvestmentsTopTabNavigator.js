@@ -1,12 +1,16 @@
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Colors from '@constants/Colors';
+import {Dimensions} from 'react-native';
 // screens
 import OngoingScreen from '@screens/MainScreens/InvestmentsScreens/OngoingScreen';
 import PaidOutScreen from '@screens/MainScreens/InvestmentsScreens/PaidOutScreen';
 import HistoryScreen from '@screens/MainScreens/InvestmentsScreens/History';
 
 const Tab = createMaterialTopTabNavigator();
+
+const {width} = Dimensions.get('window');
+const DEVICE_WIDTH = width;
 
 export default function () {
   return (
@@ -24,7 +28,12 @@ export default function () {
         labelStyle: {
           fontFamily: 'Montserrat-Medium',
           fontWeight: '500',
-          fontSize: 14,
+          fontSize:
+            DEVICE_WIDTH <= 240
+              ? 10
+              : DEVICE_WIDTH > 240 && DEVICE_WIDTH <= 360
+              ? 12
+              : 14,
           color: Colors.text,
         },
       }}>
