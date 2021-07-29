@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   StatusBar,
+  ScrollView,
 } from 'react-native';
 import Carousel from '@components/Carousel/Carousel';
 import Colors from '@constants/Colors';
@@ -35,7 +36,9 @@ export default function Onboarding({navigation}) {
   });
 
   return (
-    <View style={styles.screen}>
+    <ScrollView
+      style={styles.screen}
+      contentContainerStyle={styles.scrollContent}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
       <Carousel data={data} />
 
@@ -54,7 +57,7 @@ export default function Onboarding({navigation}) {
         }}>
         <Text style={styles.loginText}>Log In</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -62,6 +65,8 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: 'white',
+  },
+  scrollContent: {
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -82,6 +87,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.primary,
     borderRadius: 5,
+    marginBottom: 50,
   },
   signupText: {
     color: Colors.text,

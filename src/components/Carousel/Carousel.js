@@ -8,7 +8,6 @@ import CarouselItem, {
 import Colors from '@constants/Colors';
 
 const {height} = Dimensions.get('window');
-const HEIGHT = height * 0.7;
 
 export default function Slider({data}) {
   const isCarousel = useRef(null);
@@ -45,8 +44,8 @@ export default function Slider({data}) {
 
 const styles = StyleSheet.create({
   carousel: {
-    paddingTop: '8%',
-    height: HEIGHT,
+    paddingTop: '10%',
+    height: height <= 640 ? height * 0.8 : height * 0.7,
   },
   paginationDots: {
     width: 10,
