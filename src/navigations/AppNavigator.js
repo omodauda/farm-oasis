@@ -6,6 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import StartUpScreen from '@screens/StartUpScreen';
 import AuthStack from '@navigations/AuthStack';
 import MainNavigator from '@navigations/MainNavigator';
+import ConfirmEmailScreen from '@screens/AuthScreens/ConfirmEmailScreen';
 
 const Stack = createStackNavigator();
 
@@ -28,8 +29,10 @@ export default function AppNavigator() {
     <Stack.Navigator headerMode="none">
       {user.token === null && user.refreshToken === null ? (
         <Stack.Screen name="Auth" component={AuthStack} />
-      ) : (
+      ) : user.isVerified ? (
         <Stack.Screen name="Main" component={MainNavigator} />
+      ) : (
+        <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
       )}
     </Stack.Navigator>
   );

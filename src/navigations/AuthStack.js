@@ -8,7 +8,6 @@ import SignupScreen from '@screens/AuthScreens/SignupScreen';
 import LoginScreen from '@screens/AuthScreens/LoginScreen';
 import ForgetPasswordScreen from '@screens/AuthScreens/ForgetPasswordScreen';
 import ResetPasswordScreen from '@screens/AuthScreens/ResetPasswordScreen';
-import ConfirmEmailScreen from '@screens/AuthScreens/ConfirmEmailScreen';
 
 const Stack = createStackNavigator();
 
@@ -55,13 +54,6 @@ export default function AuthStack() {
         }}
         name="ResetPassword"
         component={ResetPasswordScreen}
-      />
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-        name="ConfirmEmail"
-        component={ConfirmEmailScreen}
       />
     </Stack.Navigator>
   );
