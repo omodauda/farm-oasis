@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import {useSelector} from 'react-redux';
 import {createStackNavigator} from '@react-navigation/stack';
 
 // stacks
@@ -9,11 +10,27 @@ import MainNavigator from '@navigations/MainNavigator';
 const Stack = createStackNavigator();
 
 export default function AppNavigator() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const user = useSelector(state => state.auth.user);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  });
+
+  if (isLoading) {
+    return <StartUpScreen />;
+  }
+
   return (
     <Stack.Navigator headerMode="none">
-      <Stack.Screen name="StartUp" component={StartUpScreen} />
-      <Stack.Screen name="Auth" component={AuthStack} />
-      <Stack.Screen name="Main" component={MainNavigator} />
+      {user.token === null && user.refreshToken === null ? (
+        <Stack.Screen name="Auth" component={AuthStack} />
+      ) : (
+        <Stack.Screen name="Main" component={MainNavigator} />
+      )}
     </Stack.Navigator>
   );
 }

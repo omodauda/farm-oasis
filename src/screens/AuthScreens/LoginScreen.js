@@ -28,7 +28,6 @@ export default function LoginScreen({navigation}) {
     setIsLoading(true);
     try {
       await dispatch(login(email, password));
-      navigation.navigate('Main');
     } catch (err) {
       setError(err.message);
     }
