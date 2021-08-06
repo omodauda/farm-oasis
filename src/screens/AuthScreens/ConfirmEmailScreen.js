@@ -26,7 +26,6 @@ export default function ConfirmEmailScreen({navigation}) {
     setIsLoading(true);
     try {
       await dispatch(verifyUser(confirmation_token));
-      navigation.navigate('Main');
     } catch (err) {
       setError(err.message);
     }
