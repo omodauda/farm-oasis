@@ -1,5 +1,4 @@
-import React, {useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import React from 'react';
 import {
   View,
   ImageBackground,
@@ -8,31 +7,9 @@ import {
   StyleSheet,
   StatusBar,
 } from 'react-native';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
 import Colors from '@constants/Colors';
 
-// import {getUser} from '@store/actions/auth';
-
-export default function StartUpScreen({navigation}) {
-  // const dispatch = useDispatch();
-  const user = useSelector(state => state.auth.user);
-
-  useEffect(() => {
-    const getUserData = async () => {
-      setTimeout(async () => {
-        if (user.token === null && user.refreshToken === null) {
-          return navigation.navigate('Auth');
-        } else if (!user.isVerified) {
-          navigation.navigate('Auth', {screen: 'ConfirmEmail'});
-        } else {
-          navigation.navigate('Main');
-        }
-      }, 3000);
-    };
-    getUserData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigation]);
-
+export default function StartUpScreen() {
   return (
     <View style={styles.screen}>
       <StatusBar backgroundColor={Colors.background} barStyle="dark-content" />
