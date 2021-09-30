@@ -1,13 +1,18 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {
   Text,
   StyleSheet,
   TouchableOpacity,
   StatusBar,
-  ScrollView,
+  Animated,
+  FlatList,
+  View,
+  Image,
+  Dimensions,
 } from 'react-native';
-import Carousel from '@components/Carousel/Carousel';
 import Colors from '@constants/Colors';
+
+const {width} = Dimensions.get('window');
 
 const data = [
   {
@@ -27,7 +32,37 @@ const data = [
   },
 ];
 
+const IMG_WIDTH = width * 0.6;
+const bgs = ['#B9D2D2', '#00E23F', '#B9D2D2'];
+
 export default function Onboarding({navigation}) {
+  const scrollX = useRef(new Animated.Value(0)).current;
+
+  const Indicators = ({scrollx}) => {
+    return (
+      <View style={styles.Indicators}>
+        {data.map((_, index) => {
+          const inputRange = [
+            (index - 1) * width,
+            index * width,
+            (index + 1) * width,
+          ];
+          const backgroundColor = scrollx.interpolate({
+            inputRange,
+            outputRange: bgs.map(bg => bg),
+            extrapolate: 'clamp',
+          });
+          return (
+            <Animated.View
+              key={`indicator-${index}`}
+              style={[styles.indicator, {backgroundColor}]}
+            />
+          );
+        })}
+      </View>
+    );
+  };
+
   useEffect(() => {
     navigation.addListener('beforeRemove', e => {
       e.preventDefault();
@@ -35,28 +70,63 @@ export default function Onboarding({navigation}) {
   });
 
   return (
-    <ScrollView
-      style={styles.screen}
-      contentContainerStyle={styles.scrollContent}>
+    <View style={styles.screen}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
-      <Carousel data={data} />
+      <View style={styles.list}>
+        <FlatList
+          data={data}
+          keyExtractor={(item, index) => index.toString()}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.content}
+          onScroll={Animated.event(
+            [{nativeEvent: {contentOffset: {x: scrollX}}}],
+            {useNativeDriver: false},
+          )}
+          renderItem={({item, index}) => {
+            const inputRange = [
+              (index - 1) * width,
+              index * width,
+              (index + 1) * width,
+            ];
+            const rotate = scrollX.interpolate({
+              inputRange,
+              outputRange: ['-30deg', '0deg', '30deg'],
+              extrapolate: 'clamp',
+            });
+            return (
+              <Animated.View style={[styles.listView, {transform: [{rotate}]}]}>
+                <View style={styles.imageContainer}>
+                  <Image source={item.image} style={styles.image} />
+                </View>
+                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.body}>{item.body}</Text>
+              </Animated.View>
+            );
+          }}
+        />
+      </View>
+      <Indicators scrollx={scrollX} />
 
-      <TouchableOpacity
-        style={styles.signupButton}
-        onPress={() => {
-          navigation.navigate('Signup');
-        }}>
-        <Text style={styles.signupText}>Create an account</Text>
-      </TouchableOpacity>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.signupButton}
+          onPress={() => {
+            navigation.navigate('Signup');
+          }}>
+          <Text style={styles.signupText}>Create an account</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.loginButton}
-        onPress={() => {
-          navigation.navigate('Login');
-        }}>
-        <Text style={styles.loginText}>Log In</Text>
-      </TouchableOpacity>
-    </ScrollView>
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={() => {
+            navigation.navigate('Login');
+          }}>
+          <Text style={styles.loginText}>Log In</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
 
@@ -64,10 +134,53 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: 'white',
+    alignItems: 'center',
   },
-  scrollContent: {
+  list: {
+    flex: 0.7,
+  },
+  content: {
+    alignItems: 'center',
+    paddingTop: 20,
+  },
+  listView: {
+    width,
+    alignItems: 'center',
+    paddingHorizontal: 24,
+  },
+  imageContainer: {
+    backgroundColor: 'grey',
+    width: IMG_WIDTH,
+    height: IMG_WIDTH,
+    borderRadius: IMG_WIDTH / 2,
+    overflow: 'hidden',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  image: {
+    width: '75%',
+    height: '75%',
+    resizeMode: 'contain',
+  },
+  title: {
+    color: Colors.primary,
+    fontSize: 24,
+    fontWeight: '500',
+    fontFamily: 'Montserrat-Medium',
+    marginTop: 20,
+  },
+  body: {
+    color: 'black',
+    fontSize: 16,
+    fontWeight: '500',
+    fontFamily: 'Montserrat-Medium',
+    marginTop: 14,
+  },
+  buttonContainer: {
+    width,
+    alignItems: 'center',
+    flex: 0.3,
+    justifyContent: 'center',
   },
   signupButton: {
     width: '80%',
@@ -86,7 +199,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.primary,
     borderRadius: 5,
-    marginBottom: 50,
+    marginBottom: 20,
   },
   signupText: {
     color: Colors.text,
@@ -99,5 +212,14 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '500',
     fontFamily: 'Montserrat-Medium',
+  },
+  Indicators: {
+    flexDirection: 'row',
+  },
+  indicator: {
+    width: 9,
+    height: 9,
+    borderRadius: 9,
+    margin: 5,
   },
 });
